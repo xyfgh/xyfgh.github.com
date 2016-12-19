@@ -101,11 +101,14 @@ function touchFeedback(touchSelector,touchClass){
 	// 	$(this).removeClass(touchClass);
 	// })
 }
+
+// 创建手机页面标题栏
 function creatMobilePageTitle(creatMobilePageTitleParameter) {
 	title = creatMobilePageTitleParameter.title?creatMobilePageTitleParameter.title:"错误：缺少标题";
 	titleClass = creatMobilePageTitleParameter.class?creatMobilePageTitleParameter.class+" topbar":"topbar";
-	$(".wrap-page").before('<div class="wrap-top"><div class="'+titleClass+'">'+title+'</div></div>');
+	$(".wrap-page").before('<div class="wrap-top"><div class="'+titleClass+'">'+title+'</div></div>').css("margin-top","3.5em");
 	if (creatMobilePageTitleParameter.backBotton) {
-		$(".topbar").prepend('<a class="topbar-back" href="javascript:history.go(-1);"></a>');
+		$(".topbar").prepend('<a class="topbar-back" href="javascript:history.go(-1);">返回</a>');
 	}
+	touchFeedback(".topbar-back");
 }
