@@ -1,0 +1,13 @@
+/* 适用于移动端 */
+/* 类名中的单词用连字符连接，不用驼峰或下划线 */
+@charset "UTF-8";
+
+.ul-default{
+
+}
+.ul-default li,.li-default{
+	height: 3em;
+	line-height: 3em;
+	width: 100%;
+	background-color: #EEE;
+}

@@ -1,0 +1,67 @@
+/* 适用于移动端 */
+/* 类名中的单词用连字符连接，不用驼峰或下划线 */
+@charset "UTF-8";
+
+/* 初始化 */
+a,body,div,html,input,li,p,ul,form,h1,h2,h3,h4,h5,span,form,textarea,button{
+	margin:0;
+	padding:0;
+	border:none;
+	background-color:transparent;
+	-webkit-tap-highlight-color:transparent;
+}
+input,select{
+	outline:0;
+	border:none;
+	background-color:transparent;
+	-moz-appearance:none;
+	-ms-appearance:none;
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	color:inherit;
+}
+/* 设置页面最小最大宽度，并在电脑显示中居中 */
+html{
+	max-width: 640px;
+	min-width: 320px;
+	min-height: 100%;
+	margin:0 auto;
+	position: relative;
+}
+/* 设置body的字体大小，用于整个页面中的文字；js动态设置html的字体大小，用于页面中的rem单位 */
+body{
+	font-size: 16px;
+}
+/* 重置字体 */
+html,a{
+	font-family: "Helvetica","微软雅黑","MicrosoftYahei";
+}
+ul,ol,dl,li{
+	list-style:none;
+}
+a{
+	text-decoration:none;color:inherit;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+button:focus{
+	outline:0;
+}
+img[src=""]{
+	opacity:0;
+}
+/* 功能性css类 */
+/* 设置最小最大宽度，并在电脑显示中居中 */
+.limit-width{
+	max-width: 640px;
+	min-width: 320px;
+}
+/* 禁止选中 */
+.select-none{
+	-webkit-user-select:none;
+	user-select:none;
+}
+.no-beforeafter:before,.no-beforeafter:after{display: none!important;}
+.has-beforeafter:before,.has-beforeafter:after{display: block!important;}
