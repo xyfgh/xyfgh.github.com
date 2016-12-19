@@ -9,6 +9,8 @@ a,body,div,html,input,li,p,ul,form,h1,h2,h3,h4,h5,span,form,textarea,button{
 	border:none;
 	background-color:transparent;
 	-webkit-tap-highlight-color:transparent;
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s;
 }
 input,select{
 	outline:0;
@@ -60,8 +62,17 @@ img[src=""]{
 }
 /* 禁止选中 */
 .select-none{
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
 	-webkit-user-select:none;
+	-ms-user-select:none;
 	user-select:none;
 }
 .no-beforeafter:before,.no-beforeafter:after{display: none!important;}
 .has-beforeafter:before,.has-beforeafter:after{display: block!important;}
+.text-center{
+	text-align: center;
+	vertical-align: middle;
+}
