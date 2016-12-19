@@ -107,7 +107,7 @@ function creatMobilePageTitle(creatMobilePageTitleParameter) {
 	title = creatMobilePageTitleParameter.title?creatMobilePageTitleParameter.title:"错误：缺少标题";
 	titleClass = creatMobilePageTitleParameter.class?creatMobilePageTitleParameter.class+" topbar":"topbar";
 	$(".wrap-page").before('<div class="wrap-top"><div class="'+titleClass+'">'+title+'</div></div>').css("margin-top","3.5em");
-	if (creatMobilePageTitleParameter.backBotton) {
+	if (creatMobilePageTitleParameter.backBotton=="true") {
 		$(".topbar").prepend('<a class="topbar-back" href="javascript:history.go(-1);">返回</a>');
 	}
 	touchFeedback(".topbar-back");
