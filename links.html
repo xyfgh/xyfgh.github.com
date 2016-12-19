@@ -5,16 +5,34 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>链接</title>
+	<title>我的GitHub链接页面</title>
 	<link rel="stylesheet" type="text/css" href="i/style/mobileReset.css">
 	<link rel="stylesheet" type="text/css" href="i/style/mobileStyle.css">
+	<style type="text/css">
+		.links-touch{
+			background-color: #ddd;
+		}
+		ul{
+			margin-top: 0.5em;
+		}
+		.li-default+.li-default{
+			border-top: 1px solid #ccc;
+		}
+	</style>
 </head>
 <body>
 	<div class="wrap-page">
-		<ul >
-			<li class="li-default"><a href="animation/CSS3-clock.html">CSS时钟</a></li>
-			<li class="li-title"><a href="animation/CSS3-clock.html">CSS时钟</a></li>
+		<ul>
+			<li class="li-default"><a href="animation/CSS3-clock.html">基于CSS3的时钟</a></li>
+			<li class="li-default"><a href="animation/canvas-clock.html">基于canvas的时钟</a></li>
 		</ul>
 	</div>
+	<script type="text/javascript" src="i/javascript/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="i/javascript/x.js"></script>
+	<script type="text/javascript">
+		adaptiveRootFontSize(375);
+		touchFeedback("li","links-touch");
+		creatMobilePageTitle({"title":"链接列表","class":"topbar-links","backBotton":"true","homeBotton":"true"});
+	</script>
 </body>
 </html>
