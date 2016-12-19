@@ -3,7 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-	<title>css时钟</title>
+	<title>基于CSS3的时钟</title>
+	<link rel="stylesheet" type="text/css" href="../i/style/mobileReset.css">
+	<link rel="stylesheet" type="text/css" href="../i/style/mobileStyle.css">
 	<style id="clock-animations"></style>
 	<style type="text/css">
 		html,body{
@@ -157,7 +159,7 @@
 		    left: 129px;
 		    width: 2px;
 		    height: 130px;
-		    background-color: #a00;
+		    background-color: #b00;
 		    box-shadow: 0 0 2px rgba(0,0,0,.2);
 		    transform-origin: 1px 110px;
 		    transition: .5s;
@@ -198,28 +200,30 @@
 	</style>
 </head>
 <body>
-	<div class="clock-wrapper">
-		<div class="clock-base">
-			<div class="click-indicator">
-			<!-- 刻度 -->
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
+	<div class="wrap-page">
+		<div class="clock-wrapper">
+			<div class="clock-base">
+				<div class="click-indicator">
+				<!-- 刻度 -->
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<!-- 指针 -->
+				<div class="clock-hour"></div>
+				<div class="clock-minute"></div>
+				<div class="clock-second"></div>
+				<div class="clock-center"></div>
 			</div>
-			<!-- 指针 -->
-			<div class="clock-hour"></div>
-			<div class="clock-minute"></div>
-			<div class="clock-second"></div>
-			<div class="clock-center"></div>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -236,6 +240,11 @@
 			].join("");
 			document.getElementById("clock-animations").innerHTML = stylesDeg;
 		})();
+	</script>
+	<script type="text/javascript" src="../i/javascript/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="../i/javascript/x.js"></script>
+	<script type="text/javascript">
+		creatMobilePageTitle({"title":"链接列表","class":"topbar-links","backBotton":"true","homeBotton":"true"});
 	</script>
 </body>
 </html>
