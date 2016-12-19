@@ -50,24 +50,26 @@ html{
 	width: 20%;
 	position: absolute;
 	left: 0;
-	font-size: .9em;
+	font-size: 1em;
 	transition: opacity 0.2s;
 	-webkit-transition: opacity 0.2s;
 	color: #2d78f4;
+	text-align: left;
+	text-indent: 1.5em;
 }
 .topbar-back:before{
 	content: "";
 	display: block;
 	position: absolute;
 	left: 15%;
-	top: 1.2em;
-	height: .9em;
-	width: .9em;
-	border-left: 2px solid #2d78f4;
-	border-bottom: 2px solid #2d78f4;
+	top: 1em;
+	height: .8em;
+	width: .8em;
+	border-left: 3px solid #2d78f4;
+	border-bottom: 3px solid #2d78f4;
 	transform: rotate(45deg);
 	-webkit-transform: rotate(45deg);
 }
-.topbar-back.touch-default:before{
+.topbar-back.touch-default{
 	opacity: .5;
 }
