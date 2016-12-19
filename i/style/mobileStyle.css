@@ -2,22 +2,27 @@
 /* 类名中的单词用连字符连接，不用驼峰或下划线 */
 @charset "UTF-8";
 
+html{
+	opacity: 0;
+}
 /* 触摸反馈默认样式 */
 .touch-default{
 	opacity: .7;
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s;
 }
 
 
 .ul-default{
-	background-color: #eee;
+	background-color: #fff;
 }
 .li-default{
-	height: 3em;
-	line-height: 3em;
+	height: 0.5rem;
+	line-height: 0.5rem;
 	box-sizing: border-box;
 	padding-left: 3%;
 	padding-right: 3%;
-	background-color: #eee;
+	background-color: #fff;
 }
 .li-title{
 	
@@ -29,29 +34,40 @@
 .topbar{
 	width: 100%;
 	text-align: center;
+	position: fixed;
+	top: 0;
 }
 .topbar-links{
 	height: 3em;
-	margin-bottom: 0.2em;
 	line-height: 3em;
-	background-color: #f0f0f0;
+	line-height: 3em;
+	background-color: #fff;
+	box-sizing: border-box;
+	border-bottom: 1px solid #ddd;
 }
 .topbar-back{
 	height: 100%;
 	width: 20%;
 	position: absolute;
 	left: 0;
+	font-size: .9em;
+	transition: opacity 0.2s;
+	-webkit-transition: opacity 0.2s;
+	color: #2d78f4;
 }
 .topbar-back:before{
 	content: "";
 	display: block;
 	position: absolute;
 	left: 15%;
-	top: .8em;
-	height: 1em;
-	width: 1em;
-	border-left: 2px solid #bbb;
-	border-bottom: 2px solid #bbb;
+	top: 1.2em;
+	height: .9em;
+	width: .9em;
+	border-left: 2px solid #2d78f4;
+	border-bottom: 2px solid #2d78f4;
 	transform: rotate(45deg);
 	-webkit-transform: rotate(45deg);
+}
+.topbar-back.touch-default:before{
+	opacity: .5;
 }

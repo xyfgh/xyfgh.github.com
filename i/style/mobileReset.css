@@ -9,8 +9,6 @@ a,body,div,html,input,li,p,ul,form,h1,h2,h3,h4,h5,span,form,textarea,button{
 	border:none;
 	background-color:transparent;
 	-webkit-tap-highlight-color:transparent;
-	transition: all 0.2s;
-	-webkit-transition: all 0.2s;
 }
 input,select{
 	outline:0;
@@ -30,10 +28,12 @@ html{
 	min-height: 100%;
 	margin:0 auto;
 	position: relative;
+	width: 100%;
 }
 /* 设置body的字体大小，用于整个页面中的文字；js动态设置html的字体大小，用于页面中的rem单位 */
 body{
 	font-size: 16px;
+	width: 100%;
 }
 /* 重置字体 */
 html,a{
