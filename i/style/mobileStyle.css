@@ -17,8 +17,8 @@ html{
 	background-color: #fff;
 }
 .li-default{
-	height: 0.5rem;
-	line-height: 0.5rem;
+	height:3em;
+	line-height:3em;
 	box-sizing: border-box;
 	padding-left: 3%;
 	padding-right: 3%;
@@ -36,6 +36,8 @@ html{
 	text-align: center;
 	position: fixed;
 	top: 0;
+	max-width: 640px;
+	min-width: 320px;
 }
 .topbar-links{
 	height: 3em;
@@ -55,7 +57,7 @@ html{
 	-webkit-transition: opacity 0.2s;
 	color: #2d78f4;
 	text-align: left;
-	text-indent: 1.5em;
+	text-indent: 6%;
 }
 .topbar-back:before{
 	content: "";
