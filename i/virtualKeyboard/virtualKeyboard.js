@@ -276,7 +276,9 @@ $(function virtualInputMain() {
 		else $('.focusVirtualInput .placeholder').fadeIn(100);
 	})
 	touchFeedback(".keyboard-item","key-touched");
-
+	$(".keyboard").bidn("click",function () {
+		event.stopPropagation();
+	})
 	$(".keyboard").bind("touchstart touchmove touchend",function () {
 		event.stopPropagation();
 	})
