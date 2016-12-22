@@ -204,6 +204,8 @@ function openKeyboard(type) {
 	$(window).scrollTop(focusVirtualInput.offset().top-($(window).height()-$(activeKeyboard).height()-focusVirtualInput.height()-30));
 	$('body').addClass('overflow-hidden');
 	focusVirtualInput.removeClass('no-beforeafter').addClass('has-beforeafter');
+	$('a').css('pointer-events','none');
+	$('input').css('pointer-events','none');
 }
 // 关闭键盘
 function closeKeyboard(){
