@@ -1,7 +1,7 @@
 /*键盘基本样式*/
-.virtualInput{-webkit-tap-highlight-color:none;vertical-align:middle;height:40px;line-height:40px}
-.virtualInput .placeholder{color:#999;position:absolute;width:100%;height:inherit;line-height:inherit}
-.virtualInput .text{width:auto;max-width:100%;float:left;text-transform:uppercase;height:100%;line-height:inherit}
+.virtualInput{-webkit-tap-highlight-color:none;vertical-align:middle;height:40px;line-height:40px;-webkit-user-select:none;user-select:none;}
+.virtualInput .placeholder{color:#999;position:absolute;width:inherit;height:inherit;line-height:inherit}
+.virtualInput .text{width:auto;max-width:100%;float:left;text-transform:uppercase;height:100%;line-height:inherit;-webkit-user-select:text;user-select:text;}
 .virtualInput .hideInput{position:absolute;left:-9999px;text-transform:uppercase;height:100%;width:100%}
 .virtualInput:after{content:'';float:left;width:2px;height:100%;background-color:#2f90f7;box-sizing:border-box;-webkit-animation:blink .8s infinite;display:none;vertical-align:inherit}
 .keyboard{display:none;height:200px;width:100%;background-color:#cfd4d9;position:fixed;bottom:0;z-index:99;max-width:640px;min-width:320px;-webkit-user-select:none;user-select:none;}
@@ -25,10 +25,10 @@
 
 /*qwerty键盘样式*/
 .qwertyKeyboard{}
-.qwertyKeyboard-row{height: 21%;padding-top: 2%;}
+.qwertyKeyboard-row{height: 21%;padding-top: 1.8%;}
 .qwertyKeyboard-item{width: 9%;height: 98%;line-height:40px;}
 .qwertyKeyboard-item+.qwertyKeyboard-item{margin-left: 0.8%;}
-.qwertyKeyboard .key-confirm{width: 20%;}
+.qwertyKeyboard .key-confirm{width: 18.8%;}
 .qwertyKeyboard .key-delete{background-size:60%;}
 .qwertyKeyboard .key-close{background-size: 60%;}
 

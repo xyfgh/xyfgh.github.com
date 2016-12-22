@@ -200,7 +200,8 @@ function openKeyboard(type) {
 			break;
 	}
 	$(activeKeyboard).slideDown(100);
-	$('.wrap-page').css('padding-bottom','100px');
+	$('body').css('padding-bottom',"200px");
+	$(window).scrollTop(focusVirtualInput.offset().top-($(window).height()-$(activeKeyboard).height()-focusVirtualInput.height()-30));
 	$('body').addClass('overflow-hidden');
 	focusVirtualInput.removeClass('no-beforeafter').addClass('has-beforeafter');
 }
@@ -227,13 +228,15 @@ $(function virtualInputMain() {
 	// 遍历页面中的虚拟输入框，补全结构并创建虚拟键盘
 	var i=0;
 	virtualInputs.each(function () {
-		i++;
-		console.log(i+"\."+$(this).attr('data-keyboard').replace(/{/g, "").replace(/}/g, "").replace(/"/g, " "));
-		// 补全html结构
-		$(this).append('<div class="placeholder">'+JSON.parse($(this).attr('data-keyboard')).placeholder+'</div>');
-		$(this).append('<div class="text"></div>');
-		// 创建页面用到的虚拟键盘
-		keyboardCreate(JSON.parse($(this).attr('data-keyboard')).type);
+		if ($(this).attr('data-keyboard')) {
+			i++;
+			console.log(i+"\."+$(this).attr('data-keyboard').replace(/{/g, "").replace(/}/g, "").replace(/"/g, " "));
+			// 补全html结构
+			$(this).append('<div class="placeholder">'+JSON.parse($(this).attr('data-keyboard')).placeholder+'</div>');
+			$(this).append('<div class="text"></div>');
+			// 创建页面用到的虚拟键盘
+			keyboardCreate(JSON.parse($(this).attr('data-keyboard')).type);
+		}
 	});
 	// 触摸虚拟输入框时打开虚拟键盘
 	virtualInputs.on('touchstart',function (){
