@@ -9,6 +9,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<link rel="stylesheet" type="text/css" href="../style/mobileReset.css">
+	<link rel="stylesheet" type="text/css" href="../style/mobileStyle.css">
 	<link rel="stylesheet" type="text/css" href="virtualKeyboard.css">
 	<style type="text/css">
 		/*输入框样式根据实际需求进行设置*/
@@ -28,28 +29,32 @@
 	</style>
 </head>
 <body>
-	<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","ifpc":"true","maxlength":"6"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","ifpc":"true","maxlength":"6"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","ifpc":"true"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","ifpc":"true","maxlength":"6"}'></div>
-	<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","ifpc":"true"}'></div>
-	<a class="virtualInput" href="http://www.baidu.com">baidu</a>
+	<div class="wrap-page">
+		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","ifpc":"true","maxlength":"6"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","ifpc":"true","maxlength":"6"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","ifpc":"true"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","ifpc":"true","maxlength":"6"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","ifpc":"true"}'></div>
+		<a class="virtualInput" href="http://www.baidu.com">baidu</a>
+	</div>
+	
 
 	<script type="text/javascript" src="../javascript/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="../javascript/fastclick.js"></script>
 	<script type="text/javascript" src="../javascript/x.js"></script>
+	<script type="text/javascript" src="../javascript/mobileJavascript.js"></script>
 	<script type="text/javascript" src="virtualKeyboard.js"></script>
 	<script type="text/javascript">
 
 		adaptiveRootFontSize(375);//自适应根字号
-		
+		creatMobilePageTitle({"title":"基于CSS3的时钟","class":"topbar-links","backBotton":"true","homeBotton":"true"});
 		
 	</script>
 </body>

@@ -74,7 +74,7 @@ function adaptiveRootFontSize(screenWidth){
 	}
 }
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// 对象
 var x = new xConstructor();
 function xConstructor(parameter){
 	if (parameter) {return $(parameter)}
@@ -98,6 +98,7 @@ function touchFeedback(touchSelector,touchClass){
 	})
 }
 
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // 创建手机页面标题栏
 function creatMobilePageTitle(creatMobilePageTitleParameter) {
 	title = creatMobilePageTitleParameter.title?creatMobilePageTitleParameter.title:"错误：缺少标题";
@@ -107,4 +108,15 @@ function creatMobilePageTitle(creatMobilePageTitleParameter) {
 		$(".topbar").prepend('<a class="topbar-back" href="javascript:history.go(-1);">返回</a>');
 	}
 	touchFeedback(".topbar-back");
+	$(".topbar-back").on("touchstart touchmove touchend",function () {
+		event.stopPropagation();
+	})
 }
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// 快速点击
+// window.addEventListener('load', function () {
+// 	FastClick.attach(document.body);
+// }, false);
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------

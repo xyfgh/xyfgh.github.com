@@ -38,6 +38,7 @@ html{
 	top: 0;
 	max-width: 640px;
 	min-width: 320px;
+	z-index: 99;
 }
 .topbar-links{
 	height: 3em;
@@ -45,7 +46,7 @@ html{
 	line-height: 3em;
 	background-color: #fff;
 	box-sizing: border-box;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 0.01rem solid #ddd;
 }
 .topbar-back{
 	height: 100%;
@@ -58,6 +59,7 @@ html{
 	color: #2d78f4;
 	text-align: left;
 	text-indent: 6%;
+	pointer-events: auto!important;
 }
 .topbar-back:before{
 	content: "";

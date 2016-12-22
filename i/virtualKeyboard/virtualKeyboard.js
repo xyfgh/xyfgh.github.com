@@ -4,6 +4,9 @@
 // ifpc         PC是否可用
 // maxlength    输入最大长度
 
+// 已知并且暂时无法解决的bug：
+// 1. 双击虚拟按键时，会触发iOS10中safari的自动缩放。原因：从iOS10开始，safari不支持禁止用户缩放视口。
+
 
 // 根据type参数创建键盘
 function keyboardCreate(type) {
@@ -243,8 +246,8 @@ $(function virtualInputMain() {
 			i++;
 			console.log(i+"\."+$(this).attr('data-keyboard').replace(/{/g, "").replace(/}/g, "").replace(/"/g, " "));
 			// 补全html结构
-			$(this).append('<div class="placeholder">'+JSON.parse($(this).attr('data-keyboard')).placeholder+'</div>');
-			$(this).append('<div class="text"></div>');
+			$(this).append('<div class="placeholder">'+JSON.parse($(this).attr('data-keyboard')).placeholder+'</div><div class="text"></div>');
+			$(this).append("<input class=\"hidden-input\" type=\"text\" style=\"text-transform:uppercase;\" maxlength=\"6\" onkeyup=\"value=value.replace(/[\\W]/g,'') \" onbeforepaste=\"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))\">");
 			// 创建页面用到的虚拟键盘
 			keyboardCreate(JSON.parse($(this).attr('data-keyboard')).type);
 		}
@@ -263,7 +266,7 @@ $(function virtualInputMain() {
 	virtualInputs.on('touchend',function (){
 		event.stopPropagation();
 		// 加判断，以避免重复激活键盘
-		if (!$(this).hasClass("focusVirtualInput")&&!bodyMove) {
+		if ($(this).attr('data-keyboard')&&!$(this).hasClass("focusVirtualInput")&&!bodyMove) {
 			closeKeyboard();
 			$(this).addClass("focusVirtualInput");
 			Text = $('.focusVirtualInput .text');
