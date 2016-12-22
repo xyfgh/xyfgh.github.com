@@ -89,17 +89,13 @@ function touchFeedback(touchSelector,touchClass){
 	touchClass = touchClass ? touchClass:"touch-default";
 	$(touchSelector).on("touchstart.touchFeedback",function () {
 		$(this).addClass(touchClass);
-		This = $(this)
-		setTimeout(function () {
-			This.removeClass(touchClass);
-		},500)
 	})
-	// $(touchSelector).on("touchmove.touchFeedback",function () {
-	// 	$(this).removeClass(touchClass);
-	// })
-	// $(touchSelector).on("touchend.touchFeedback",function () {
-	// 	$(this).removeClass(touchClass);
-	// })
+	$(touchSelector).on("touchmove.touchFeedback",function () {
+		$(this).removeClass(touchClass);
+	})
+	$(touchSelector).on("touchend.touchFeedback",function () {
+		$(this).removeClass(touchClass);
+	})
 }
 
 // 创建手机页面标题栏
