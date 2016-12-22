@@ -4,7 +4,6 @@
 // ifpc         PC是否可用
 // maxlength    输入最大长度
 
-FastClick.attach(document.body);
 
 // 根据type参数创建键盘
 function keyboardCreate(type) {
@@ -164,13 +163,13 @@ function provinceKeyboardLogic() {
 }
 function GeneralKeyboardLogic() {
 	var deleteTimer;
-	$('.key-confirm').on('click.GeneralKeyboardLogic',function(){
+	$('.key-confirm').on('touchend.GeneralKeyboardLogic',function(){
 		setTimeout(function(){
 	 		$('a').css('pointer-events','auto');
 			$('input').css('pointer-events','auto');
 	    }, 400);
 	})
-	$('.key-delete').on("click.GeneralKeyboardLogic",function () {
+	$('.key-delete').on("touchstart.GeneralKeyboardLogic",function () {
 		// $('.focusVirtualInput .text').html($('.focusVirtualInput .text').html().substring(0,$('.focusVirtualInput .text').html().length-1));
 		deleteTimer = setInterval(function () {
 			$('.focusVirtualInput .text').html($('.focusVirtualInput .text').html().substring(0,$('.focusVirtualInput .text').html().length-1));
@@ -178,8 +177,9 @@ function GeneralKeyboardLogic() {
 			else $('.focusVirtualInput .placeholder').fadeIn(100);
 		},200);
 	})
-	$('.key-delete').on("click.GeneralKeyboardLogic",function () {
+	$('.key-delete').on("touchend.GeneralKeyboardLogic",function () {
 		$('.focusVirtualInput .text').html($('.focusVirtualInput .text').html().substring(0,$('.focusVirtualInput .text').html().length-1));
+		if (!$('.focusVirtualInput .text').html()) $('.focusVirtualInput .placeholder').fadeIn(100);
 		window.clearInterval(deleteTimer);
 	})
 }
@@ -250,10 +250,10 @@ $(function virtualInputMain() {
 		}
 	});
 	// 点击虚拟输入框时打开虚拟键盘
-	virtualInputs.on("touchend",function () {
-		event.stopPropagation();
-	})
-	virtualInputs.on('click',function (){
+	// virtualInputs.on("touchend",function () {
+	// 	event.stopPropagation();
+	// })
+	virtualInputs.on('touchend',function (){
 		event.stopPropagation();
 		// 加判断，以避免重复激活键盘
 		if (!$(this).hasClass("focusVirtualInput")) {
