@@ -268,15 +268,16 @@ $(function virtualInputMain() {
 		}
 
 	})
-	// 触摸反馈
-	$(".keyboard").bind("touchstart",function () {
-		event.stopPropagation();
-	})
+
 	$(".keyboard-item").bind("touchend",function () {
 		if ($('.focusVirtualInput .text').html()) $('.focusVirtualInput .placeholder').fadeOut(100);
 		else $('.focusVirtualInput .placeholder').fadeIn(100);
 	})
 	touchFeedback(".keyboard-item","key-touched");
+	
+	$(".keyboard").bind("touchend touchmove",function () {
+		event.stopPropagation();
+	})
 	$('html').on('touchend touchmove',function () {
 		closeKeyboard();
 	})
