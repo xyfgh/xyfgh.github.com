@@ -4,6 +4,9 @@
 // ifpc         PC是否可用
 // maxlength    输入最大长度
 
+window.addEventListener('load', function () {
+	FastClick.attach(document.body);
+}, false);
 
 // 根据type参数创建键盘
 function keyboardCreate(type) {
@@ -136,6 +139,7 @@ function IDCardKeyboardLogic() {
 		event.stopPropagation();
 		var This = $(this);
 		var addText = This.html();
+		maxlength = 18;
 		if (Text.html().length>=maxlength) {
 			addText = '';
 		}
@@ -200,9 +204,13 @@ function openKeyboard(type) {
 			break;
 	}
 	$(activeKeyboard).slideDown(100);
-	$('body').css('padding-bottom',"200px");
-	$(window).scrollTop(focusVirtualInput.offset().top-($(window).height()-$(activeKeyboard).height()-focusVirtualInput.height()-30));
+	$('body').css({"padding-bottom":"200px","transition":"padding-bottom .1s"});
 	$('body').addClass('overflow-hidden');
+	console.log(focusVirtualInput.offset().top-($(window).height()-focusVirtualInput.height()-228));
+	setTimeout(function () {
+		$("html,body").animate({"scrollTop":focusVirtualInput.offset().top-($(window).height()-focusVirtualInput.height()-200-10)},200);
+	},100)
+	
 	focusVirtualInput.removeClass('no-beforeafter').addClass('has-beforeafter');
 	setTimeout(function(){
 		$('a').css('pointer-events','none');
@@ -221,7 +229,8 @@ function closeKeyboard(){
 		$('a').css('pointer-events','auto');
 		$('input').css('pointer-events','auto');
 	}, 400);
-	$('.virtualInput').removeClass('focusVirtualInput')
+	$('.virtualInput').removeClass('focusVirtualInput');
+	$('body').css('padding-bottom',"0");
 }
 // 虚拟键盘主函数
 var Text;
@@ -242,8 +251,11 @@ $(function virtualInputMain() {
 			keyboardCreate(JSON.parse($(this).attr('data-keyboard')).type);
 		}
 	});
-	// 触摸虚拟输入框时打开虚拟键盘
-	virtualInputs.on('touchstart',function (){
+	// 点击虚拟输入框时打开虚拟键盘
+	virtualInputs.on("touchend",function () {
+		event.stopPropagation();
+	})
+	virtualInputs.on('click',function (){
 		event.stopPropagation();
 		// 加判断，以避免重复激活键盘
 		if (!$(this).hasClass("focusVirtualInput")) {
@@ -265,7 +277,7 @@ $(function virtualInputMain() {
 		else $('.focusVirtualInput .placeholder').fadeIn(100);
 	})
 	touchFeedback(".keyboard-item","key-touched");
-	$('html').on('touchstart',function () {
+	$('html').on('touchend touchmove',function () {
 		closeKeyboard();
 	})
 	// 设置所有键盘的缺省逻辑

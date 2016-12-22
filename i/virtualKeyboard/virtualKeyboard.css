@@ -3,10 +3,10 @@
 .virtualInput .placeholder{color:#999;position:absolute;width:inherit;height:inherit;line-height:inherit}
 .virtualInput .text{width:auto;max-width:100%;float:left;text-transform:uppercase;height:100%;line-height:inherit;-webkit-user-select:text;user-select:text;}
 .virtualInput .hideInput{position:absolute;left:-9999px;text-transform:uppercase;height:100%;width:100%}
-.virtualInput:after{content:'';float:left;width:2px;height:100%;background-color:#2f90f7;box-sizing:border-box;-webkit-animation:blink .8s infinite;display:none;vertical-align:inherit}
+.virtualInput:after{content:'';float:left;width:2px;height:100%;background-color:#2f90f7;box-sizing:border-box;-webkit-animation:blink .8s infinite;animation:blink .8s infinite;display:none;vertical-align:inherit}
 .keyboard{display:none;height:200px;width:100%;background-color:#cfd4d9;position:fixed;bottom:0;z-index:99;max-width:640px;min-width:320px;-webkit-user-select:none;user-select:none;}
 .keyboard-row{width:100%;height:22.5%;text-align:center;font-size:0;vertical-align:middle}
-.keyboard-item{box-sizing: border-box;-webkit-box-sizing: border-box;height:90%;line-height:40px;display:inline-block;font-size:16px;font-weight:500;border-radius: 10%;vertical-align:middle;text-align:center;cursor:pointer;background-color:#fff;box-shadow:0 1px 0 #878a8e;-webkit-box-shadow:0 1px 0 #878a8e;transition:background-color .2s;-webkit-transition:background-color .2s;transition:border-color .2s;-webkit-transition:border-color .2s;}
+.keyboard-item{box-sizing: border-box;-webkit-box-sizing: border-box;height:100%;line-height:40px;display:inline-block;font-size:16px;font-weight:500;border-radius: 10%;vertical-align:middle;text-align:center;cursor:pointer;background-color:#fff;box-shadow:0 1px 0 #878a8e;-webkit-box-shadow:0 1px 0 #878a8e;transition:background-color .2s;-webkit-transition:background-color .2s;transition:border-color .2s;-webkit-transition:border-color .2s;}
 @-webkit-keyframes blink{0%,to{opacity:0}50%{opacity:1}}@keyframes blink{0%,to{opacity:0}50%{opacity:1}}
 .key-delete{font-size:0!important;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAjCAYAAADWtVmPAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkFCMEZCQ0JDQzFBQTExRTZBODBEQjRCNTI2RTFGOTQxIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkFCMEZCQ0JEQzFBQTExRTZBODBEQjRCNTI2RTFGOTQxIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QUIwRkJDQkFDMUFBMTFFNkE4MERCNEI1MjZFMUY5NDEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QUIwRkJDQkJDMUFBMTFFNkE4MERCNEI1MjZFMUY5NDEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7//P3XAAAFfUlEQVR42sxZaUwUZxged7iW0xURCktX5KqRIqVyW1OjwWqQYymWUEPbxBS5kbBAoYhbS4wBkVvK1RooRVoFOUsQJAhVEWEpaSJV2EKhpj/80/RPQ83b792wdEvYZXZm2ULyhp2d2W++5z2e93lnKACguNjc3C/8iooqOHz4CFhabgeKovRiaWnpMDU1ba/cBycQ3d29PhERkU3m5pZgaGgMIpGT3oBQFA/8/QPn+vsHjDgB6ejoCnRze20aF/T19YempuaPVM7Ta/6v9x2tZm11v1Ua9fDhI48TJ0KW8N7Hjh3vYw1kYkLm4OnpNWZgYKQI8cLCopGGDTExWotzq8chIaELCOby5cI4rUEQb4hISO9u20bD2bMJMDPzFLTctK6MvnmzLYrPN4OwsAjtfvzkyc/bg4PfaUMvREW9B8oFScGbb8ZGmVyH9eng4Kjd4iSNLiKIU6ei4fHjSTc1NaBXWy1+JhcvLv7GS05OLTA1Nf8jPFwM4+MTblpsnOYQDVqnQK5eLf2AgAAXFzd48GDMg+nmRkfve6shAo0glpae02Nj43t1FpHZWTk/Li6+iKTTS6TYwcGhIKYbam39LtrRUQQnT4bJnz2bs2IInsZrs7NzwM7OHi5c+KxSLp83V6VeVkDOnPm4mMczgICAoL97er4P1sazk5NTzkePBr/AmkJWmZ//lb8RzWIkpNKLYGFhpQDS0tL6PueIpKdnSInkeOHq6g5Ic2wKcWTkB28fHz9F1w8NDQeZ7MfdmggiK+uTJiMjE8BI1tTUpa6kJc0KCBZ2bm5eJqYT1kR9/ZdJmkK7kQ0NDfsjGGyeBIxc3XV4HysrgSISDQ1fJXBmrfx86TlsMra2r8D1641xuqBVLFx3971gbMyH2NgP72MKqa6LKSQUvqroB3V1DUmc6RfZycTE9E/0DIaWa39Q3TCC8fLyVog9AgYVgQ2eq62tT8UoYGO7du0LCec+0tj49XFS2Mu4YHFxiXQzmhdSNxGagAQSGRkFRUXFsGePiyJSGRmZ37Bx3H+AdHX1+JHQzqG3dAhi3Q0ND4/4BAW99RfWjLW1DWBxk3QGIn9sOHf2xMRkwIaHvL1ZAk/1mETic3QaTRsCphvpHayFpxIIDz8tLy8rvhQIBL+TQ5rS/d9L5Yf29g6xVCrN5fF4lFAopGQyGSWRSFCQ7uR0bwRw48a3bwsE1jNY5NpQn7aRQBbEZofRx6gMDNw9dPDgIcWILBa/O7PBOsw6e2lpeTQJ9XMVHtepmiUTZQim0o4dOyEvL79WuUGsmX37XgczMwtITT3XzkBs0hvSLyn008Rjs/b2QtXRlTMgkk5hWBNY3KTZNqxd8969UR8/vwAFyKSklE6dyHiMDILZtcsOqqtr0rmCQPGIEgVZqqSk7Ly661CQenh4KvpMTs6nDUxZUKPWIo0xhnT3eUyzgoJLJWwjg0ITN4ZOYbAOXV5embt//xsKMBJJFqO+sqFoLCy8EisSOT3CNKuoqMpmE434+MQ+GxtbIIq2UkXL0Zq8jXLF09MLMNVQdLKqkbVWVlYRTZjsKWE0qKqqlrABc+tWu5jhSLw6Fba13RaTWciKdbGvZ0TEhRKv/oS0iZS5SaOtfmZ2IuxCiRqexppZ8TC1FQzTVCsgqtR84IAvdHZ2h2yFqLACoqRmIvPnsRj7+vqPMO2+Wya11jzbykF6RM5nMlNvpk1NTe9mDYQMSwaZmdkZRC/JkfObm1ti/69iT0lJa0enJiQksV+ESP/zRB/JnZycgfScS8qJT80TdDamsfZQDzo7u4Krq/tMb29fICePEAkj9vcPvI0SRH/vRf59P0Kmyzky2YZzftGz8jTRhcgJvQOJiTkNd+4Mvqncxz8CDAAKWVUJK+/+EgAAAABJRU5ErkJggg==);background-position:center center;background-repeat:no-repeat;}
 .key-confirm{background-color:#2f90f1;color:#fff;}
@@ -18,15 +18,15 @@
 .nunKeyboard-row{margin:0;padding:0;height:25%;overflow:hidden;width:75%;float:left}
 .nunKeyboard-item{width:33.33%;height:100%;line-height:49px;border-top:1px solid #e8e8e8;border-radius:0;font-size:24px;font-weight:500;box-sizing:border-box;-webkit-box-shadow:none}
 .nunKeyboard-item+.nunKeyboard-item{border-left:1px solid #e8e8e8}
-.nunKeyboard .right{position:absolute;right:0;float:right;width:25%;height:100%}
+.nunKeyboard .right{position:absolute;right:0;float:right;width:25%;height:100%;}
 .nunKeyboard .right .nunKeyboard-item{height:50%;width:100%}
-.nunKeyboard .key-confirm{/*line-height: 50%;*/}
+.nunKeyboard .key-confirm{line-height: 100px;font-weight: 300;}
 .nunKeyboard .key-delete{border-left:1px solid #e8e8e8;background-size:30%;}
 
 /*qwerty键盘样式*/
 .qwertyKeyboard{}
 .qwertyKeyboard-row{height: 21%;padding-top: 1.8%;}
-.qwertyKeyboard-item{width: 9%;height: 98%;line-height:40px;}
+.qwertyKeyboard-item{width: 9%;line-height:40px;}
 .qwertyKeyboard-item+.qwertyKeyboard-item{margin-left: 0.8%;}
 .qwertyKeyboard .key-confirm{width: 18.8%;}
 .qwertyKeyboard .key-delete{background-size:60%;}
@@ -36,3 +36,5 @@
 .provinceKeyboard-row{height: 44px;margin-top:5px;}
 .provinceKeyboard-item{width: 10.5%;}
 .provinceKeyboard-item+.provinceKeyboard-item{margin-left: 1.5%}
+
+.overflow-hidden{overflow: hidden;}
