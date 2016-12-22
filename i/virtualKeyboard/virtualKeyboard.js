@@ -253,6 +253,9 @@ $(function virtualInputMain() {
 	// virtualInputs.on("touchend",function () {
 	// 	event.stopPropagation();
 	// })
+	virtualInputs.on("touchstart touchend",function () {
+		event.stopPropagation();
+	})
 	var bodyMove = false;
 	virtualInputs.on("touchmove",function () {
 		bodyMove = true;
@@ -276,9 +279,9 @@ $(function virtualInputMain() {
 		else $('.focusVirtualInput .placeholder').fadeIn(100);
 	})
 	touchFeedback(".keyboard-item","key-touched");
-	$(".keyboard").bidn("click",function () {
-		event.stopPropagation();
-	})
+	// $(".keyboard").bidn("click",function () {
+	// 	event.stopPropagation();
+	// })
 	$(".keyboard").bind("touchstart touchmove touchend",function () {
 		event.stopPropagation();
 	})
