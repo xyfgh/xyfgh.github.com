@@ -253,10 +253,14 @@ $(function virtualInputMain() {
 	// virtualInputs.on("touchend",function () {
 	// 	event.stopPropagation();
 	// })
+	var bodyMove = false;
+	virtualInputs.on("touchmove",function () {
+		bodyMove = true;
+	})
 	virtualInputs.on('touchend',function (){
 		event.stopPropagation();
 		// 加判断，以避免重复激活键盘
-		if (!$(this).hasClass("focusVirtualInput")) {
+		if (!$(this).hasClass("focusVirtualInput")&&!bodyMove) {
 			closeKeyboard();
 			$(this).addClass("focusVirtualInput");
 			Text = $('.focusVirtualInput .text');
@@ -264,7 +268,7 @@ $(function virtualInputMain() {
 			maxlength = JSON.parse(focusVirtualInput.attr('data-keyboard')).maxlength;
 			openKeyboard(JSON.parse($(this).attr('data-keyboard')).type.toLowerCase());
 		}
-
+		bodyMove = false;
 	})
 
 	$(".keyboard-item").bind("touchend",function () {
@@ -273,10 +277,10 @@ $(function virtualInputMain() {
 	})
 	touchFeedback(".keyboard-item","key-touched");
 
-	$(".keyboard").bind("touchend touchmove",function () {
+	$(".keyboard").bind("touchstart touchmove touchend",function () {
 		event.stopPropagation();
 	})
-	$('html').on('touchend touchmove',function () {
+	$('html').on('touchstart touchmove touchend',function () {
 		closeKeyboard();
 	})
 	// 设置所有键盘的缺省逻辑
