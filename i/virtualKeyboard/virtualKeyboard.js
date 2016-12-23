@@ -132,7 +132,8 @@ function defaultKeyboardLogic(keyboardName){
 			closeKeyboard();
 		}
 		$('.focusVirtualInput .text').html($('.focusVirtualInput .text').html()+addText);
-		$('.focusVirtualInput .hidden-input').val(Text.html()).focus();
+		focusHiddenInput.val(Text.html());
+		if (ifpc) {focusHiddenInput.focus();}
 		$('.focusVirtualInput .text').hide().show(0);//修复部分手机上输入第一个字符时.text宽度不会改变的bug
 	})
 }
@@ -157,7 +158,8 @@ function IDCardKeyboardLogic() {
 			closeKeyboard();
 		}
 		Text.html(Text.html()+addText);
-		$('.focusVirtualInput .hidden-input').val(Text.html()).focus();
+		focusHiddenInput.val(Text.html());
+		if (ifpc) {focusHiddenInput.focus();}
 		Text.hide().show(0);//修复部分手机上输入第一个字符时.text宽度不会改变的bug
 	})
 }
