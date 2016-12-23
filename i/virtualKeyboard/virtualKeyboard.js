@@ -278,6 +278,7 @@ $(function virtualInputMain() {
 	var bodyMove = false;
 	virtualInputs.on("touchmove",function () {
 		bodyMove = true;
+		closeKeyboard();
 	})
 	var Event;ifpc?Event = "click":Event = "touchend";
 	virtualInputs.on(Event,function (){
