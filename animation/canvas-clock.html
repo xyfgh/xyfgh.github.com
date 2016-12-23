@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-	<title>基于CSS3的时钟</title>
+	<title>基于Canvas的时钟</title>
 	<link rel="stylesheet" type="text/css" href="../i/style/mobileReset.css">
 	<link rel="stylesheet" type="text/css" href="../i/style/mobileStyle.css">
 	<style id="clock-animations"></style>
@@ -11,239 +11,157 @@
 		html{
 		    background-color: #f0f0f0;
 		}
-		/*时钟容器*/
-		.clock-wrapper{
-		    position: absolute;
-		    top: 0;
-		    right: 0;
-		    bottom: 100px;
-		    left: 0;
-		    width: 250px;
-		    height: 250px;
-		    margin: auto;
-		    padding: 5px;
-		    background-color: #fff;
-		    border-radius: 50%;
-		    border: 5px solid #666;
-		}
-		/*表盘*/
-		.clock-base{
-		    width: 250px;
-		    height: 250px;
-		    border-radius: 50%;
-		}
-		/*表盘刻度容器*/
-		.click-indicator{
-		    position: absolute;
-		    z-index: 1;
-		    top: 15px;
-		    left: 15px;
-		    width: 230px;
-		    height: 230px;
-		}
-		/*表盘刻度*/
-		.click-indicator div{
-		    position: absolute;
-		    width: 2px;
-		    height: 6px;
-		    margin: 112px 114px;
-		    background-color: #ddd;
-		    font-family: "微软雅黑","Microsoft Yahei";
-		    color: #666;
-		    font-weight: 600;
-		}
-		.click-indicator div:before{
-			position: absolute;
+		.canvas-clock{
+			width: 270px;
 			display: block;
-			width: 20px;
-			height: 20px;
-			text-align: center;
-			left: -9px;
-			top: 8px;
-		}
-		/*分别设置各个刻度的位置和角度*/
-		.click-indicator div:nth-child(1) {
-		    transform: rotate(30deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(2) {
-		    transform: rotate(60deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(3) {
-		    transform: rotate(90deg) translateY(-113px);
-		    background-color: #999;
-		}
-		.click-indicator div:nth-child(4) {
-		    transform: rotate(120deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(5) {
-		    transform: rotate(150deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(6) {
-		    transform: rotate(180deg) translateY(-113px);
-		    background-color: #999;
-		}
-		.click-indicator div:nth-child(7) {
-		    transform: rotate(210deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(8) {
-		    transform: rotate(240deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(9) {
-		    transform: rotate(270deg) translateY(-113px);
-		    background-color: #999;
-		}
-		.click-indicator div:nth-child(10) {
-		    transform: rotate(300deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(11) {
-		    transform: rotate(330deg) translateY(-113px);
-		}
-		.click-indicator div:nth-child(12) {
-		    transform: rotate(360deg) translateY(-113px);
-		    background-color: #c00;
-		    height: 8px;
-		}
-		.click-indicator div:nth-child(3):before{
-			content: "3";
-			transform: rotate(-90deg);
-		}
-		.click-indicator div:nth-child(6):before{
-			content: "6";
-			transform: rotate(-180deg);
-		}
-		.click-indicator div:nth-child(9):before{
-			content: "9";
-			transform: rotate(-270deg);
-		}
-		.click-indicator div:nth-child(12):before{
-			content: "12";
-		}
-		/*时针*/
-		.clock-hour{
-		    position: absolute;
-		    z-index: 2;
-		    top: 80px;
-		    left: 128px;
-		    width: 4px;
-		    height: 65px;
-		    background-color: #555;
-		    border-radius: 2px;
-		    box-shadow: 0 0 2px rgba(0,0,0,.2);
-		    transform-origin: 2px 50px;
-		    transition: .5s;
-		    -webkit-animation: rotate-hour 43200s linear infinite;
-		}
-		/*分针*/
-		.clock-minute{
-		    position: absolute;
-		    z-index: 3;
-		    top: 60px;
-		    left: 128px;
-		    width: 4px;
-		    height: 85px;
-		    background-color: #555;
-		    border-radius: 2px;
-		    box-shadow: 0 0 2px rgba(0,0,0,.2);
-		    transform-origin: 2px 70px;
-		    transition: .5s;
-		    -webkit-animation: rotate-minute 3600s linear infinite;
-		}
-		/*秒针*/
-		.clock-second{
-		    position: absolute;
-		    z-index: 4;
-		    top: 20px;
-		    left: 129px;
-		    width: 2px;
-		    height: 130px;
-		    background-color: #b00;
-		    box-shadow: 0 0 2px rgba(0,0,0,.2);
-		    transform-origin: 1px 110px;
-		    transition: .5s;
-		    -webkit-animation: rotate-second 60s linear infinite;
-		}
-		.clock-second:after{
-		    content: "";
-		    display: block;
-		    position: absolute;
-		    left: -5px;
-		    bottom: 14px;
-		    width: 8px;
-		    height: 8px;
-		    background-color: #a00;
-		    border: solid 2px #a00;
-		    border-radius: 50%;
-		    box-shadow: 0 0 3px rgba(0,0,0,.2);
-		}
-		/*表盘中央的原型区域*/
-		.clock-center{
-		    position: absolute;
-		    z-index: 1;
-		    width: 150px;
-		    height: 150px;
-		    top: 55px;
-		    left: 55px;
-		    border-radius: 50%;
-		}
-		.clock-center:after{
-		    content: "";
-		    display: block;
-		    width: 20px;
-		    height: 20px;
-		    margin: 65px;
-		    background-color: #ddd;
-		    border-radius: 50%;
+			margin: auto;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 100px;
 		}
 	</style>
 </head>
 <body>
 	<div class="wrap-page">
-		<div class="clock-wrapper">
-			<div class="clock-base">
-				<div class="click-indicator">
-				<!-- 刻度 -->
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-					<div></div>
-				</div>
-				<!-- 指针 -->
-				<div class="clock-hour"></div>
-				<div class="clock-minute"></div>
-				<div class="clock-second"></div>
-				<div class="clock-center"></div>
-			</div>
-		</div>
+		<canvas class="canvas-clock" id="canvas" width="400" height="400"></canvas>
 	</div>
-	<script type="text/javascript">
-		(function(){
-		//初始化时针角度
-		var now = new Date(),
-			hourDeg = now.getHours() / 12 * 360 + now.getMinutes() / 60 * 30,
-			minuteDeg = now.getMinutes() / 60 * 360 + now.getSeconds() / 60 * 6,
-			secondDeg = now.getSeconds() / 60 * 360,
-			stylesDeg = [
-				"@-webkit-keyframes rotate-hour{from{transform:rotate(" + hourDeg + "deg);}to{transform:rotate(" + (hourDeg + 360) + "deg);}}",
-				"@-webkit-keyframes rotate-minute{from{transform:rotate(" + minuteDeg + "deg);}to{transform:rotate(" + (minuteDeg + 360) + "deg);}}",
-				"@-webkit-keyframes rotate-second{from{transform:rotate(" + secondDeg + "deg);}to{transform:rotate(" + (secondDeg + 360) + "deg);}}"
-			].join("");
-			document.getElementById("clock-animations").innerHTML = stylesDeg;
-		})();
-	</script>
 	<script type="text/javascript" src="../i/javascript/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="../i/javascript/x.js"></script>
 	<script type="text/javascript" src="../i/javascript/mobileJavascript.js"></script>
+	<script type="text/javascript">
+		creatMobilePageTitle({"title":"基于Canvas的时钟","class":"topbar-links","backBotton":"true"});
+	</script>
 
 	<script type="text/javascript">
-		creatMobilePageTitle({"title":"基于CSS3的时钟","class":"topbar-links","backBotton":"true","homeBotton":"true"});
+	/*
+	 * author: lifeng
+	 * time: 2016.10.12
+	 * github: https://github.com/lifeng1893
+	 * email: lifeng.isme@foxmail.com
+	 */
+	(function clock() {
+		// 获取事件
+		var ctx = document.getElementById('canvas').getContext('2d');
+		var now = new Date(),
+			ms = now.getTime()%60000;
+			sec = now.getSeconds(),
+			min = now.getMinutes(),
+			hr = now.getHours();
+			hr = hr > 12 ? hr - 12 : hr;
+
+		// 表盘
+		ctx.save();
+		ctx.clearRect(0, 0, 400, 400);
+		ctx.translate(200, 200); //将坐标圆点设置在表盘中心点
+		ctx.rotate(-Math.PI/2); //将坐标轴逆时针旋转90度，x轴正方向对准12点方向
+		ctx.fillStyle = "#fff";
+		ctx.arc(0, 0, 200, 0, Math.PI * 2, true);
+		ctx.fill();
+
+		// 刻度
+		ctx.save();
+		for (var i = 0; i < 12; i++) {
+			ctx.beginPath();
+			if(i==0){ctx.strokeStyle = '#b00';ctx.moveTo(173, 0);ctx.lineTo(160, 0);}
+			else if(i==3||i==6||i==9){ctx.strokeStyle = '#555';ctx.moveTo(173, 0);ctx.lineTo(165, 0);}
+			else {ctx.strokeStyle = '#ddd';ctx.moveTo(173, 0);ctx.lineTo(165, 0);}
+			ctx.lineWidth = 2.5;
+			ctx.rotate(Math.PI / 6);
+			ctx.stroke();
+		}
+		ctx.restore();
+
+		// 时间文字
+		ctx.save();
+		ctx.rotate(Math.PI/2);
+		ctx.fillStyle = '#666';
+		ctx.font = '700 23.5px Microsoft yahei';
+		ctx.textAlign = 'center';
+		ctx.textBaseline = 'middle';
+		ctx.fillText('3', 145, 0);
+		ctx.fillText('6', 0, 145);
+		ctx.fillText('9', -145, 0);
+		ctx.fillText('12', 0, -145);
+		ctx.restore();
+
+		// 指针中间底部的浅灰色圆
+		ctx.save();
+		ctx.beginPath();
+		ctx.arc(0, 0, 15, 0, Math.PI * 2, true);
+		ctx.fillStyle = '#ddd';
+		ctx.strokeStyle = '#ddd';
+		ctx.stroke();
+		ctx.fill();
+		ctx.restore();
+
+		// 时针
+		ctx.save();
+		ctx.rotate(hr * (Math.PI / 6) + min * (Math.PI / 360) + sec * (Math.PI / 21600));
+		ctx.lineWidth = 6;
+		ctx.strokeStyle = '#555';
+		ctx.beginPath();
+		ctx.moveTo(-22, 0);
+		ctx.lineTo(73, 0);
+		ctx.stroke();
+		ctx.fillStyle = '#555';
+		ctx.fill();
+		ctx.restore();
+
+		// 分针
+		ctx.save();
+		ctx.rotate(min * (Math.PI / 30) + sec * (Math.PI/1800));
+		ctx.lineWidth = 6;
+		ctx.strokeStyle = '#555';
+		ctx.beginPath();
+		ctx.moveTo(-22, 0);
+		ctx.lineTo(103, 0);
+		ctx.stroke();
+		ctx.restore();
+
+		// 秒针
+		ctx.save();
+		// ctx.rotate(ms * (Math.PI/30000));
+		ctx.rotate(sec * (Math.PI/30));
+		ctx.beginPath();
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = '#b00';
+		ctx.moveTo(0, 0);
+		ctx.lineTo(163, 0);
+		ctx.stroke();
+
+		ctx.beginPath();
+		ctx.lineWidth = 3;
+		ctx.strokeStyle = '#b00';
+		ctx.moveTo(0, 0);
+		ctx.lineTo(-30, 0);
+		ctx.stroke();
+
+		// 秒针中间的红色圆点
+		ctx.beginPath();
+		ctx.lineWidth = 0;
+		ctx.arc(0, 0, 7, 0, Math.PI * 2, true);
+		ctx.fillStyle = '#a00';
+		ctx.fill();
+		ctx.strokeStyle = '#a00';
+		ctx.stroke();
+		ctx.restore();
+
+		// 边框
+		ctx.beginPath();
+		ctx.lineWidth = 7;
+		var lingrad2 = ctx.createLinearGradient(150, 0, -150, 0);
+		lingrad2.addColorStop(0, '#666');
+		lingrad2.addColorStop(1, '#666');
+		ctx.strokeStyle = lingrad2;
+		ctx.arc(0,0,196,0,Math.PI*2,true);
+		ctx.stroke();
+		ctx.restore();
+
+		// 动画
+		window.requestAnimationFrame(clock);
+	})();
 	</script>
 </body>
 </html>
