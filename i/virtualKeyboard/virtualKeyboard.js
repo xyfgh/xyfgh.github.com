@@ -122,7 +122,7 @@ function defaultKeyboardLogic(keyboardName){
 			addText = '';
 		}
 		if($('.focusVirtualInput .text').html().length==0&&This.html()=='0'){
-			addText = '0.';
+			addText = '0';
 		}
 		else if (This.hasClass('key-delete')) {
 			addText = '';
