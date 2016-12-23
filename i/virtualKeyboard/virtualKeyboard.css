@@ -26,7 +26,7 @@
 
 /*qwerty键盘样式*/
 .qwertyKeyboard{}
-.qwertyKeyboard-row{height: 21%;padding-top: 1.8%;}
+.qwertyKeyboard-row{height: 44px;padding-top: 5px;}
 .qwertyKeyboard-item{width: 9%;line-height:40px;}
 .qwertyKeyboard-item+.qwertyKeyboard-item{margin-left: 0.8%;}
 .qwertyKeyboard .key-confirm{width: 18.8%;}

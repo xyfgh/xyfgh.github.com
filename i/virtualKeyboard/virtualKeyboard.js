@@ -1,7 +1,7 @@
 // 虚拟键盘参数：
 // tyle         类型
 // placeholder  占位符
-// ifpc         PC是否可用
+// supportpc    PC是否可用
 // maxlength    输入最大长度
 
 // 已知并且暂时无法解决的bug：
@@ -112,8 +112,9 @@ function IDCardKeyboardCreate() {
 
 // 键盘默认逻辑
 function defaultKeyboardLogic(keyboardName){
+	var Event;ifpc?Event = "click":Event = "touchend.defaultKeyboardLogic";
 	var timer;
-	$(keyboardName).find(".keyboard-item").on('touchend.defaultKeyboardLogic',function () {
+	$(keyboardName).find(".keyboard-item").on(Event,function () {
 		event.stopPropagation();
 		var This = $(this);
 		var addText = This.html();
@@ -131,11 +132,13 @@ function defaultKeyboardLogic(keyboardName){
 			closeKeyboard();
 		}
 		$('.focusVirtualInput .text').html($('.focusVirtualInput .text').html()+addText);
+		$('.focusVirtualInput .hidden-input').val(Text.html()).focus();
 		$('.focusVirtualInput .text').hide().show(0);//修复部分手机上输入第一个字符时.text宽度不会改变的bug
 	})
 }
 function IDCardKeyboardLogic() {
-	$('.IDCardKeyboard-item').on('touchend.IDCardKeyboardLogic',function () {
+	var Event;ifpc?Event = "click":Event = "touchend.IDCardKeyboardLogic";
+	$('.IDCardKeyboard-item').on(Event,function () {
 		event.stopPropagation();
 		var This = $(this);
 		var addText = This.html();
@@ -154,11 +157,13 @@ function IDCardKeyboardLogic() {
 			closeKeyboard();
 		}
 		Text.html(Text.html()+addText);
+		$('.focusVirtualInput .hidden-input').val(Text.html()).focus();
 		Text.hide().show(0);//修复部分手机上输入第一个字符时.text宽度不会改变的bug
 	})
 }
 function provinceKeyboardLogic() {
-	$('.provinceKeyboard-item').on('touchend.provinceKeyboardLogic',function () {
+	var Event;ifpc?Event = "click":Event = "touchend.provinceKeyboardLogic";
+	$('.provinceKeyboard-item').on(Event,function () {
 		$('.focusVirtualInput .placeholder').fadeOut(100)
 		Text.html($(this).html());
 		closeKeyboard();
@@ -166,13 +171,15 @@ function provinceKeyboardLogic() {
 }
 function GeneralKeyboardLogic() {
 	var deleteTimer;
-	$('.key-confirm').on('touchend.GeneralKeyboardLogic',function(){
+	var Event;ifpc?Event = "click":Event = "touchend.GeneralKeyboardLogic";
+	$('.key-confirm').on(Event,function(){
 		setTimeout(function(){
 	 		$('a').css('pointer-events','auto');
 			$('input').css('pointer-events','auto');
 	    }, 400);
 	})
-	$('.key-delete').on("touchstart.GeneralKeyboardLogic",function () {
+	ifpc?Event = "mousedown.GeneralKeyboardLogic":Event = "touchstart.GeneralKeyboardLogic";
+	$('.key-delete').on(Event,function () {
 		// $('.focusVirtualInput .text').html($('.focusVirtualInput .text').html().substring(0,$('.focusVirtualInput .text').html().length-1));
 		deleteTimer = setInterval(function () {
 			$('.focusVirtualInput .text').html($('.focusVirtualInput .text').html().substring(0,$('.focusVirtualInput .text').html().length-1));
@@ -180,13 +187,16 @@ function GeneralKeyboardLogic() {
 			else $('.focusVirtualInput .placeholder').fadeIn(100);
 		},200);
 	})
-	$('.key-delete').on("touchend.GeneralKeyboardLogic",function () {
+	ifpc?Event = "mouseup.GeneralKeyboardLogic":Event = "touchend.GeneralKeyboardLogic";
+	$('.key-delete').on(Event,function () {
 		$('.focusVirtualInput .text').html($('.focusVirtualInput .text').html().substring(0,$('.focusVirtualInput .text').html().length-1));
 		if (!$('.focusVirtualInput .text').html()) $('.focusVirtualInput .placeholder').fadeIn(100);
 		window.clearInterval(deleteTimer);
 	})
 }
+// function openPcKeyboard(){
 
+// }
 // 打开键盘
 function openKeyboard(type) {
 	var activeKeyboard;
@@ -204,8 +214,8 @@ function openKeyboard(type) {
 			activeKeyboard = ".provinceKeyboard";
 			break;
 	}
-	$(activeKeyboard).slideDown(100);
-	$('body').css({"padding-bottom":"200px","transition":"padding-bottom .1s"});
+	$(activeKeyboard).slideDown(200);
+	$('body').css({"padding-bottom":"200px","transition":"padding-bottom .2s"});
 	$('body').addClass('overflow-hidden');
 	console.log(focusVirtualInput.offset().top-($(window).height()-focusVirtualInput.height()-228));
 	setTimeout(function () {
@@ -222,7 +232,7 @@ function openKeyboard(type) {
 function closeKeyboard(){
 	$('.wrap-page').css('padding-bottom','0');
 	$('body').removeClass('overflow-hidden');
-	$('.keyboard').slideUp(100);
+	$('.keyboard').slideUp(200);
 	$('.focusVirtualInput').removeClass('has-beforeafter').addClass('no-beforeafter');
 	// if ($('.focusVirtualInput .text').html()) $('.focusVirtualInput .placeholder').hide();
 	// else $('.focusVirtualInput .placeholder').show();
@@ -236,7 +246,10 @@ function closeKeyboard(){
 // 虚拟键盘主函数
 var Text;
 var focusVirtualInput;
+var focusHiddenInput;
 var maxlength;
+var supportpc;
+var ifpc = judgeUserAgent("pc");
 $(function virtualInputMain() {	
 	var virtualInputs = $('.virtualInput');
 	// 遍历页面中的虚拟输入框，补全结构并创建虚拟键盘
@@ -244,10 +257,11 @@ $(function virtualInputMain() {
 	virtualInputs.each(function () {
 		if ($(this).attr('data-keyboard')) {
 			i++;
-			console.log(i+"\."+$(this).attr('data-keyboard').replace(/{/g, "").replace(/}/g, "").replace(/"/g, " "));
+			// console.log(i+"\."+$(this).attr('data-keyboard').replace(/{/g, "").replace(/}/g, "").replace(/"/g, " "));//输出每个虚拟输入框的属性
 			// 补全html结构
 			$(this).append('<div class="placeholder">'+JSON.parse($(this).attr('data-keyboard')).placeholder+'</div><div class="text"></div>');
-			$(this).append("<input class=\"hidden-input\" type=\"text\" style=\"text-transform:uppercase;\" maxlength=\"6\" onkeyup=\"value=value.replace(/[\\W]/g,'') \" onbeforepaste=\"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))\">");
+			// $(this).append("<input class=\"hidden-input\" type=\"text\" style=\"text-transform:uppercase;\" maxlength=\"6\" onkeyup=\"value=value.replace(/[\\W]/g,'') \" onbeforepaste=\"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))\">");
+			$(this).append("<input class=\"hidden-input\" type=\"text\">");
 			// 创建页面用到的虚拟键盘
 			keyboardCreate(JSON.parse($(this).attr('data-keyboard')).type);
 		}
@@ -263,7 +277,8 @@ $(function virtualInputMain() {
 	virtualInputs.on("touchmove",function () {
 		bodyMove = true;
 	})
-	virtualInputs.on('touchend',function (){
+	var Event;ifpc?Event = "click":Event = "touchend";
+	virtualInputs.on(Event,function (){
 		event.stopPropagation();
 		// 加判断，以避免重复激活键盘
 		if ($(this).attr('data-keyboard')&&!$(this).hasClass("focusVirtualInput")&&!bodyMove) {
@@ -271,16 +286,36 @@ $(function virtualInputMain() {
 			$(this).addClass("focusVirtualInput");
 			Text = $('.focusVirtualInput .text');
 			focusVirtualInput = $('.focusVirtualInput');
+			focusHiddenInput = $('.focusVirtualInput .hidden-input');
 			maxlength = JSON.parse(focusVirtualInput.attr('data-keyboard')).maxlength;
+			supportpc = JSON.parse(focusVirtualInput.attr('data-keyboard')).supportpc;
 			openKeyboard(JSON.parse($(this).attr('data-keyboard')).type.toLowerCase());
+			$('.focusVirtualInput .text').on("change DOMNodeInserted DOMNodeRemoved",function () {
+				console.log("D");
+			});
 		}
 		bodyMove = false;
 	})
 
-	$(".keyboard-item").bind("touchend",function () {
+	if (ifpc) {
+		virtualInputs.on("click",function () {
+			$(this).addClass("focusVirtualInput");
+			$(this).find(".hidden-input").focus();
+			openKeyboard(JSON.parse($(this).attr('data-keyboard')).type.toLowerCase());
+		})
+		$(".hidden-input").on("keyup",function () {
+			Text.html($(".focusVirtualInput .hidden-input").val());
+			console.log(Text);
+			if ($('.focusVirtualInput .text').html()) $('.focusVirtualInput .placeholder').fadeOut(100);
+		else $('.focusVirtualInput .placeholder').fadeIn(100);
+		})
+	}
+	var Event;ifpc?Event = "click" : Event = "touchend";
+	$(".keyboard-item").bind(Event,function () {
 		if ($('.focusVirtualInput .text').html()) $('.focusVirtualInput .placeholder').fadeOut(100);
 		else $('.focusVirtualInput .placeholder').fadeIn(100);
 	})
+	
 	touchFeedback(".keyboard-item","key-touched");
 	// $(".keyboard").bidn("click",function () {
 	// 	event.stopPropagation();
@@ -291,6 +326,11 @@ $(function virtualInputMain() {
 	$('html').on('touchstart touchmove touchend',function () {
 		closeKeyboard();
 	})
+	if (ifpc) {
+		$('html').on('click',function () {
+			closeKeyboard();
+		})
+	}
 	// 设置所有键盘的缺省逻辑
 	GeneralKeyboardLogic();
 })
