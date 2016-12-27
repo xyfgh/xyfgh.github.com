@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跳转</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+</head>
+<body>
+	<script type="text/javascript">	
+	// 函数功能：判断用户浏览器
+	// 参数不区分大小写
+	// 参数与返回值:
+	// pc：      返回是否pc
+	// mobile：  返回是否移动端
+	// iphone：  返回是否iPhone
+	// android： 返回是否Android
+	// wechat：  返回是否微信
+	// detail：  返回浏览器详情
+	// 为空：    返回浏览器缩写
+	// 其它：    返回true或false，并在控制台显示警告信息
+	function judgeUserAgent(parameter) {
+		var userAgentInfo = navigator.userAgent;
+		var pcAgents = ["Mac","Windows","Linux"];
+		var mobileAgents = ["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod","BlackBerry"];
+		var Agents=[];
+		var userAgent;
+		var flag = false;
+		if (!parameter) {
+			Agents = mobileAgents.concat(pcAgents).concat(["micromessenger"]);
+		}
+		else{
+			parameter = parameter.toLowerCase();//判断的参数不区分大小写，因此先转换为全部小写字母
+			switch (parameter){
+				case "mobile":
+					Agents = mobileAgents;
+					break;
+				case "pc":
+					return !judgeUserAgent("mobile");//由于Mac与iPhone、Linux与Android之间无法分辨，因此判断是否pc时采用反证的方法，非mobile即pc
+					break;
+				case "wechat":
+					Agents = ["micromessenger"];
+					break;
+				case "detail":
+					return userAgentInfo;
+					break;
+				case "iphone":case "android":case "widdows":case "mac":case "linux":
+					Agents = [parameter];
+					break;
+				default:
+					Agents = [parameter];
+					console.warn("判断浏览器时，参数为“"+parameter+"”，请确认参数是否正确！\n 浏览器缩写为“"+judgeUserAgent()+"”");
+					break;
+			}
+		}
+		for (var v = 0; v < Agents.length; v++) {
+		if (userAgentInfo.indexOf(Agents[v]) > 0) {
+			flag = true;
+			userAgent=Agents[v];
+			break;
+		}
+		}
+		if (parameter) {return flag;}
+		else {return userAgent;}
+	}
+	</script>
+	<script type="text/javascript">
+		var ifPC = judgeUserAgent("pc");
+		if (ifPC) {
+			window.location.href = "redirect-pc.html";
+		}
+		else if (!ifPC) {
+			window.location.href = "redirect-mobile.html";
+		} 
+	</script>
+</body>
+</html>
