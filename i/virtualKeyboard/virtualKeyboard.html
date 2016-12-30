@@ -7,7 +7,7 @@
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="stylesheet" type="text/css" href="../../../myLib/lessLib/mobileReset.css">
+	<link rel="stylesheet" type="text/css" href="../../myLib/lessLib/mobileReset.css">
 	<link rel="stylesheet" type="text/css" href="../style/mobileStyle.css">
 	<link rel="stylesheet" type="text/css" href="virtualKeyboard.css">
 	<style type="text/css">
@@ -28,7 +28,7 @@
 		}
 	</style>
 	<style type="text/css">
-		section{
+		.section-select-city{
 			/*height: 100%;*/
 			width: 100%;
 			position: absolute;
@@ -41,15 +41,15 @@
 			background-color: rgb(245,245,249);
 			/*overflow: scroll;*/
 		}
-		dl{
+		.section-select-city dl{
 			width: 100%;
 		}
-		dt{
+		.section-select-city dt{
 			height: 35px;
 			line-height: 35px;
 			text-indent: 20px;
 		}
-		dd{
+		.section-select-city dd{
 			height: 40px;
 			line-height: 40px;
 			border-top: 1px solid #ccc;
@@ -57,24 +57,25 @@
 			background-color: #fff;
 			text-indent: 40px;
 		}
-		dd+dd{
+		.section-select-city dd+dd{
 			border-top: none;
 		}
-		.wrap-top{
+		.section-select-city .wrap-top{
 			height: 45px;
 			
 		}
-		.topbar{
+		.section-select-city .topbar{
 			line-height: 45px;
 			height: 45px;
 			z-index: 99;
 			background-color: #fff;
 			border-bottom: 1px solid #ddd;
+			position: relative;
 		}
-		.dd-touch{
+		.section-select-city .dd-touch{
 			background-color: #ddd;
 		}
-		.right-nav{
+		.section-select-city .right-nav{
 			position: fixed;
 			right: 1%;
 			width: 8%;
@@ -86,7 +87,7 @@
 			opacity: 0.8;
 
 		}
-		.right-nav a{
+		.section-select-city .right-nav a{
 			text-align: center;
 			height: 30px;
 			line-height: 30px;
