@@ -1,0 +1,49 @@
+// 全局变量开始------------------------------------------------------------------------------------------------------------
+@theme-color: #49a9f9;
+@main-bgcolor: #f2f4f3;
+@default-height: 45px;
+@default-height-li: 48px;
+@default-time: 0.2s;
+@font-size-xl: 20px;
+@font-size-lg: 18px;
+@font-size: 16px;
+@font-size-sm: 14px;
+@font-size-xs: 12px;
+// 全局变结束------------------------------------------------------------------------------------------------------------
+// 兼容写法开始------------------------------------------------------
+.transition(@args){
+	-webkit-transition:@args;
+	-moz-transition:@args;
+	-ms-transition:@args;
+	-o-transition:@args;
+	transition:@args;
+}
+.animation(@args){
+	-webkit-animation:@args;
+	-moz-animation:@args;
+	-ms-animation:@args;
+	-o-animation:@args;
+	animation:@args;
+}
+.transform(@args){
+	-webkit-transform: @args;
+	-moz-transform: @args;
+	-ms-transform: @args;
+	-o-transform: @args;
+	transform: @args;
+}
+.select(@args: none){
+	-webkit-user-select: @args;
+	-moz-user-select: @args;
+	-ms-user-select: @args;
+	-o-user-select: @args;
+	user-select: @args;
+}
+.appearance(@args){
+	-webkit-appearance: @args;
+	-moz-appearance: @args;
+	-ms-appearance: @args;
+	-o-appearance: @args;
+	appearance: @args;
+}
+// 兼容写法结束------------------------------------------------------

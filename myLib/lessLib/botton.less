@@ -1,0 +1,139 @@
+@import url(lessBase.less);
+
+// 按钮类------------------------------------------------------------------------------------------------------------
+/*按钮类*/
+@height-btn: 48px;
+@height-btn-bottom: 48px;
+
+/*按钮基础*/
+.btn{
+	display: block;
+	height: @height-btn;
+	line-height: @height-btn;
+	width: 100%;
+	text-align: center;
+	.transition(background-color @default-time ease-out,border-color @default-time ease-out,opacity @default-time ease-out;);
+	cursor:pointer;
+	border: none;
+	font-size: @font-size;
+	.select(none);
+	background-color: #ddd;
+}
+/* 按钮触摸后 */
+.btn-touch{
+	opacity: 0.8;
+}
+.btn-touch[disabled]{
+	opacity: 1!important;
+}
+/*禁用的按钮*/
+.btn-disabled,.btn[disabled]{
+	background-color: #ddd!important;
+	color: #fff!important;
+}
+// 删除原因：无效。猜测原因为不能设置多个opacity
+// 删除原因2：不适合手机交互，改为touch事件控制的样式切换
+// .btn:link{
+// 	opacity: 0.4;
+// }
+// .btn:visited{
+// 	opacity: 0.4;
+// }
+// .btn:active{
+// 	opacity: 0.8;
+// }
+// .btn:hover{
+// 	opacity: 0.8;
+// }
+/*主要按钮*/
+.btn-primary{
+	border-radius: 4px;
+	width: 90%;
+	margin: 0 auto;
+	color: #fff;
+	background-color: @theme-color;
+	clear: both;
+}
+/*页面底部的按钮*/
+.btn-bottom{
+	position: fixed;
+	// left: 0;
+	// 删除原因：fixed定位时，不设置left，可跟随父元素
+	bottom: 0;
+	color: #fff;
+	vertical-align: middle;
+	clear: both;
+	background-color: @theme-color;
+	max-width:640px;
+}
+/*页面底部并列的两个按钮*/
+.btn-bottom-left{
+	position: fixed;
+	bottom: 0;
+	color: #fff;
+	vertical-align: middle;
+	clear: both;
+	background-color: @theme-color;
+	width: 50%;
+	max-width: 320px;
+	min-width: 160px;
+	float: left;
+	border: none;
+	background-color:#3f3b38;
+
+}
+.btn-bottom-right{
+	position: fixed;
+	left: 50%;
+	float: left;
+	bottom: 0;
+	color: #fff;
+	vertical-align: middle;
+	clear: both;
+	background-color: @theme-color;
+	width: 50%;
+	max-width: 320px;
+	min-width: 160px;
+	background-color:@theme-color;
+}
+
+/*显示在右侧的按钮*/
+.btn-right{
+	width: 17%;
+	float: right;
+	border: 1px solid @theme-color;
+	color: @theme-color;
+	border-radius: 5px;
+	font: 16px "微软雅黑",'Microsoft Yahei';
+	vertical-align: middle;
+	height: 30px;
+	line-height: 30px;
+}
+/*列表项行内按钮*/
+.btn-inline{
+	float: left;
+	background-color: @theme-color;
+	color: #fff;
+	height: 35px;
+	line-height: 35px;
+	width: 5rem;
+	border-radius: 5px;
+	margin-top: 6px;
+	font-size: 15px;
+}
+/*按钮点击后显示旋转动画*/
+.btn-search-clicked{
+	width: 60px;
+	height: 32px;
+	margin: 8px 0;
+	border: none!important;
+	background: url(../../images/loading.gif) center center no-repeat!important;
+	font-size: 0!important;
+	background-color: #fff!important;
+}
+/*底部并排的两个按钮,左侧深灰色，右侧蓝色
+*/
+
+.btn-active{
+	opacity: 0.7;
+}
