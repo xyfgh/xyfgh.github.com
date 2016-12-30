@@ -1,14 +1,13 @@
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>虚拟键盘演示</title>
-	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
 	<meta name="apple-touch-fullscreen" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="stylesheet" type="text/css" href="../style/mobileReset.css">
+	<link rel="stylesheet" type="text/css" href="E:/myLib/lessLib/mobileReset.css">
 	<link rel="stylesheet" type="text/css" href="../style/mobileStyle.css">
 	<link rel="stylesheet" type="text/css" href="virtualKeyboard.css">
 	<style type="text/css">
@@ -21,30 +20,89 @@
 			margin-top: 10px;
 			padding-left: 3%;
 			font-size: 16px;
+			/*background-color: #eb1e49;*/
 		}
 		.virtualInput:after{
 			height: 30px;
 			margin: 9px 0;
 		}
 	</style>
+	<style type="text/css">
+		section{
+			/*height: 100%;*/
+			width: 100%;
+			position: absolute;
+			top: 0;
+			min-width: 320px;
+			max-width: 640px;
+			background-color: #fff;
+			z-index: 100;
+			display: none;
+			background-color: rgb(245,245,249);
+			/*overflow: scroll;*/
+		}
+		dl{
+			width: 100%;
+		}
+		dt{
+			height: 35px;
+			line-height: 35px;
+			text-indent: 20px;
+		}
+		dd{
+			height: 40px;
+			line-height: 40px;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			background-color: #fff;
+			text-indent: 40px;
+		}
+		dd+dd{
+			border-top: none;
+		}
+		.wrap-top{
+			height: 45px;
+			
+		}
+		.topbar{
+			line-height: 45px;
+			height: 45px;
+			z-index: 99;
+			background-color: #fff;
+			border-bottom: 1px solid #ddd;
+		}
+		.dd-touch{
+			background-color: #ddd;
+		}
+		.right-nav{
+			position: fixed;
+			right: 1%;
+			width: 8%;
+			top: 10%;
+			border-radius: 20px;
+			min-height: 100px;
+			z-index: 101;
+			background-color: #fff;
+			opacity: 0.8;
+
+		}
+		.right-nav a{
+			text-align: center;
+			height: 30px;
+			line-height: 30px;
+			font-size: 12px;
+			color: #2d78f4;
+		}
+	</style>
 </head>
 <body>
 	<div class="wrap-page">
-		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","supportpc":"true","maxlength":"6"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","supportpc":"true","maxlength":"6"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","supportpc":"true"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","supportpc":"true","maxlength":"6"}'></div>
-		<div class="virtualInput" data-keyboard='{"type":"province","placeholder":"这是一个省份输入框","supportpc":"true"}'></div>
-	</div>
-	
+		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","enforce":""}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","enforce":"","id":"scanIdCard"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","enforce":""}'></div>
+		<p class="virtualInput select-city">点击选择城市：<span class="city"></span></p>
 
+	</div>
 	<script type="text/javascript" src="../javascript/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="../javascript/fastclick.js"></script>
 	<script type="text/javascript" src="../javascript/x.js"></script>
@@ -54,6 +112,54 @@
 
 		adaptiveRootFontSize(375);//自适应根字号
 		creatMobilePageTitle({"title":"虚拟键盘演示","class":"topbar-links","backBotton":"true"});
+
+		var city = [["A"],["B"],["C","潮州.粤U"],["D","东莞.粤S"],["E"],["F","佛山.粤E"],["G","广州.粤A"],["H","河源.粤P","惠州.粤L"],["I"],["J","江门.粤J","揭阳.粤V"],["K"],["L"],["M","梅州.粤M"],["N"],["O"],["P"],["Q","清远.粤"],["R"],["S","汕头.粤N","汕尾.粤","韶关.粤F"],["T"],["U"],["V"],["W"],["X"],["Y","阳江.粤Q","云浮.粤W"],["Z","湛江.粤G","肇庆.粤H","中山.粤","珠海.粤C"]];
+		$('body').append('<section class="wrap-page section-select-city"><div class="wrap-top"><div class="topbar"><div class="topbar-back">关闭</div></div></div><dl class="dl-select-city"></dl><div class="right-nav"></div><section>');
+		for (var i = 0; i <= city.length - 1; i++) {
+			if (city[i].length<=1) {
+
+			}
+			else {
+				$('.dl-select-city').append($('<dt class="dt-select-city" data-href="'+city[i][0]+'" >'+city[i][0]+'</dt>'));
+				$('.right-nav').append($('<a>'+city[i][0]+'</a>'));
+				for (var j = 1; j <= city[i].length - 1; j++) {
+					var item = $('<dd class="dd-select-city" data-value="'+city[i][j].split(".")[1]+'">'+city[i][j].split(".")[0]+'</dd>')
+					$('.dl-select-city').append(item);
+				}
+			
+			}
+		}
+		$(".select-city").on("click",function () {
+			$(".section-select-city").slideDown(200);
+		})
+		$(".section-select-city .topbar-back").on("click",function () {
+			$(".section-select-city").slideUp(200);
+		})
+		$(".section-select-city dd").on("click",function () {
+			$(".select-city .city").html($(this).attr("data-value"));
+			$(".section-select-city").slideUp(200);
+		})
+		$(".right-nav a").on("click",function () {
+			var offset = $(".dt-select-city[data-href='"+$(this).html()+"']").offset().top-45;
+			console.log(offset);
+			$("body").scrollTop(offset);
+		})
+		// $(".right-nav").on("touchmove","a",function (e) {
+		// 	var touch = e.originalEvent.targetTouches[0];
+  //    		var ele = document.elementFromPoint(touch.pageX, touch.pageY);
+		// 	console.log(ele);
+		// 	$("body").addClass("overflowHidden");
+		// 	// var offset = $(".dt-select-city[data-href='"+$(ele).html()+"']").offset().top-45;
+		// 	// console.log(offset);
+		// 	// $("body").scrollTop(offset);
+		// })
+		// $(".right-nav").on("touchend","a",function () {
+		// 	$("body").removeClass("overflowHidden");
+
+		// })
+		touchFeedback("dd","dd-touch");
+	</script>
+	<script type="text/javascript">
 		
 	</script>
 </body>
