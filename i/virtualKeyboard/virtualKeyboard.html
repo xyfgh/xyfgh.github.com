@@ -183,16 +183,16 @@
 		$(".select-city").on("click",function () {
 			closeKeyboard();
 			$(".section-select-city").slideDown(200).nextAll(".select-city-right-nav").show(200);
-			$(".section-select-city").nextAll(".wrap-top").find(".topbar").show(200);
+			$(".section-select-city").nextAll(".wrap-top").find(".topbar").slideDown(200);
 		})
-		$(".section-select-city .topbar-back").on("click",function () {
+		$(".select-city-topbar .topbar-back").on("click",function () {
 			$(".section-select-city").slideUp(200).nextAll(".select-city-right-nav").hide(200);
-			$(".section-select-city").nextAll(".wrap-top").find(".topbar").hide(200);
+			$(".section-select-city").nextAll(".wrap-top").find(".topbar").slideUp(200);
 		})
 		$(".section-select-city dd").on("click",function () {
 			$(".select-city .city").html($(this).attr("data-value"));
 			$(".section-select-city").slideUp(200).nextAll(".select-city-right-nav").hide(200);
-			$(".section-select-city").nextAll(".wrap-top").find(".topbar").hide(200);
+			$(".section-select-city").nextAll(".wrap-top").find(".topbar").slideUp(200);
 		})
 		$(".right-nav a").on("click",function () {
 			var offset = $(".dt-select-city[data-href='"+$(this).html()+"']").offset().top-45;
