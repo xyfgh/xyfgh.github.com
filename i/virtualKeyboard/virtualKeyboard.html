@@ -32,17 +32,18 @@
 			-webkit-overflow-scrolling:touch;
 		}
 		.section-select-city{
-			height: 100%;
+			height: auto;
 			width: 100%;
-			position: fixed;
+			position: absolute;
 			top: 0;
+			left: 0;
 			min-width: 320px;
 			max-width: 640px;
 			background-color: #fff;
-			z-index: 100;
+			z-index: 99;
 			display: none;
 			background-color: rgb(245,245,249);
-			overflow: scroll;
+			overflow: hidden;
 		}
 		.section-select-city dl{
 			width: 100%;
@@ -68,18 +69,19 @@
 			height: 45px;
 			
 		}
-		.section-select-city .topbar{
+		.select-city-topbar{
 			line-height: 45px;
 			height: 45px;
 			z-index: 99;
 			background-color: #fff;
 			border-bottom: 1px solid #ddd;
 			position: fixed;
+			display: none;
 		}
 		.section-select-city .dd-touch{
 			background-color: #ddd;
 		}
-		.section-select-city .right-nav{
+		.select-city-right-nav{
 			position: fixed;
 			right: 1%;
 			width: 8%;
@@ -89,9 +91,9 @@
 			z-index: 999;
 			background-color: #fff;
 			opacity: 0.8;
-
+			display: none;
 		}
-		.section-select-city .right-nav a{
+		.select-city-right-nav a{
 			text-align: center;
 			height: 30px;
 			line-height: 30px;
@@ -108,7 +110,7 @@
 		<p class="virtualInput select-city">点击选择城市：<span class="city"></span></p>
 	</div>
 		
-	<section class="wrap-page section-select-city">
+	<!-- <section class="section-select-city">
 		<div class="wrap-top">
 			<div class="topbar">
 				<div class="topbar-back">关闭</div>
@@ -149,7 +151,7 @@
 		<div class="right-nav">
 			<a>C</a><a>D</a><a>F</a><a>G</a><a>H</a><a>J</a><a>M</a><a>Q</a><a>S</a><a>Y</a><a>Z</a>
 		</div>
-	</section>
+	</section> -->
 
 	<script type="text/javascript" src="../javascript/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="../javascript/fastclick.js"></script>
@@ -161,50 +163,55 @@
 		adaptiveRootFontSize(375);//自适应根字号
 		creatMobilePageTitle({"title":"虚拟键盘演示","class":"topbar-links","backBotton":"true"});
 
-		// var city = [["A"],["B"],["C","潮州.粤U"],["D","东莞.粤S"],["E"],["F","佛山.粤E"],["G","广州.粤A"],["H","河源.粤P","惠州.粤L"],["I"],["J","江门.粤J","揭阳.粤V"],["K"],["L"],["M","梅州.粤M"],["N"],["O"],["P"],["Q","清远.粤"],["R"],["S","汕头.粤N","汕尾.粤","韶关.粤F"],["T"],["U"],["V"],["W"],["X"],["Y","阳江.粤Q","云浮.粤W"],["Z","湛江.粤G","肇庆.粤H","中山.粤","珠海.粤C"]];
-		// $('body').append('<section class="wrap-page section-select-city"><div class="wrap-top"><div class="topbar"><div class="topbar-back">关闭</div></div></div><dl class="dl-select-city"></dl><div class="right-nav"></div><section>');
-		// for (var i = 0; i <= city.length - 1; i++) {
-		// 	if (city[i].length<=1) {
+		var city = [["A"],["B"],["C","潮州.粤U"],["D","东莞.粤S"],["E"],["F","佛山.粤E"],["G","广州.粤A"],["H","河源.粤P","惠州.粤L"],["I"],["J","江门.粤J","揭阳.粤V"],["K"],["L"],["M","梅州.粤M"],["N"],["O"],["P"],["Q","清远.粤"],["R"],["S","汕头.粤N","汕尾.粤","韶关.粤F"],["T"],["U"],["V"],["W"],["X"],["Y","阳江.粤Q","云浮.粤W"],["Z","湛江.粤G","肇庆.粤H","中山.粤","珠海.粤C"]];
+		$('body').append('<section class="wrap-page section-select-city"><div class="wrap-top"></div><dl class="dl-select-city"></dl></div><section>');
+		$(".section-select-city").after('<div class="select-city-right-nav">');
+		$(".section-select-city").after('<div class="wrap-top"><div class="topbar select-city-topbar"><div class="topbar-back">关闭</div></div></div>');
 
-		// 	}
-		// 	else {
-		// 		$('.dl-select-city').append($('<dt class="dt-select-city" data-href="'+city[i][0]+'" >'+city[i][0]+'</dt>'));
-		// 		$('.right-nav').append($('<a>'+city[i][0]+'</a>'));
-		// 		for (var j = 1; j <= city[i].length - 1; j++) {
-		// 			var item = $('<dd class="dd-select-city" data-value="'+city[i][j].split(".")[1]+'">'+city[i][j].split(".")[0]+'</dd>')
-		// 			$('.dl-select-city').append(item);
-		// 		}
-			
-		// 	}
-		// }
+		for (var i = 0; i <= city.length - 1; i++) {
+			if (city[i].length<=1) {
+			}
+			else {
+				$('.dl-select-city').append($('<dt class="dt-select-city" data-href="'+city[i][0]+'" >'+city[i][0]+'</dt>'));
+				$('.select-city-right-nav').append($('<a>'+city[i][0]+'</a>'));
+				for (var j = 1; j <= city[i].length - 1; j++) {
+					var item = $('<dd class="dd-select-city" data-value="'+city[i][j].split(".")[1]+'">'+city[i][j].split(".")[0]+'</dd>')
+					$('.dl-select-city').append(item);
+				}
+			}
+		}
 		$(".select-city").on("click",function () {
-			$(".section-select-city").slideDown(200);
+			closeKeyboard();
+			$(".section-select-city").slideDown(200).nextAll(".select-city-right-nav").show(200);
+			$(".section-select-city").nextAll(".wrap-top").find(".topbar").show(200);
 		})
 		$(".section-select-city .topbar-back").on("click",function () {
-			$(".section-select-city").slideUp(200);
+			$(".section-select-city").slideUp(200).nextAll(".select-city-right-nav").hide(200);
+			$(".section-select-city").nextAll(".wrap-top").find(".topbar").hide(200);
 		})
 		$(".section-select-city dd").on("click",function () {
 			$(".select-city .city").html($(this).attr("data-value"));
-			$(".section-select-city").slideUp(200);
+			$(".section-select-city").slideUp(200).nextAll(".select-city-right-nav").hide(200);
+			$(".section-select-city").nextAll(".wrap-top").find(".topbar").hide(200);
 		})
 		$(".right-nav a").on("click",function () {
 			var offset = $(".dt-select-city[data-href='"+$(this).html()+"']").offset().top-45;
 			console.log(offset);
 			$("body").scrollTop(offset);
 		})
-		// $(".right-nav").on("touchmove","a",function (e) {
-		// 	var touch = e.originalEvent.targetTouches[0];
-  //    		var ele = document.elementFromPoint(touch.pageX, touch.pageY);
-		// 	console.log(ele);
-		// 	$("body").addClass("overflowHidden");
-		// 	// var offset = $(".dt-select-city[data-href='"+$(ele).html()+"']").offset().top-45;
-		// 	// console.log(offset);
-		// 	// $("body").scrollTop(offset);
-		// })
-		// $(".right-nav").on("touchend","a",function () {
-		// 	$("body").removeClass("overflowHidden");
+		$(".right-nav").on("touchmove","a",function (e) {
+			var touch = e.originalEvent.targetTouches[0];
+			var ele = document.elementFromPoint(touch.pageX, touch.pageY);
+			console.log(ele);
+			$("body").addClass("overflowHidden");
+			// var offset = $(".dt-select-city[data-href='"+$(ele).html()+"']").offset().top-45;
+			// console.log(offset);
+			// $("body").scrollTop(offset);
+		})
+		$(".right-nav").on("touchend","a",function () {
+			$("body").removeClass("overflowHidden");
 
-		// })
+		})
 		touchFeedback("dd","dd-touch");
 	</script>
 	<script type="text/javascript">
