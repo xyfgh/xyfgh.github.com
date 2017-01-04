@@ -31,7 +31,7 @@
 		body{
 			-webkit-overflow-scrolling:touch;
 		}
-		.section-select-city{
+		.keyboard-city{
 			height: auto;
 			width: 100%;
 			position: absolute;
@@ -45,16 +45,16 @@
 			background-color: rgb(245,245,249);
 			overflow: hidden;
 		}
-		.section-select-city dl{
+		.keyboard-city dl{
 			width: 100%;
 			/*overflow: scroll;*/
 		}
-		.section-select-city dt{
+		.keyboard-city dt{
 			height: 35px;
 			line-height: 35px;
 			text-indent: 20px;
 		}
-		.section-select-city dd{
+		.keyboard-city dd{
 			height: 40px;
 			line-height: 40px;
 			border-top: 1px solid #ccc;
@@ -62,10 +62,10 @@
 			background-color: #fff;
 			text-indent: 40px;
 		}
-		.section-select-city dd+dd{
+		.keyboard-city dd+dd{
 			border-top: none;
 		}
-		.section-select-city .wrap-top{
+		.keyboard-city .wrap-top{
 			height: 45px;
 			
 		}
@@ -78,7 +78,7 @@
 			position: fixed;
 			display: none;
 		}
-		.section-select-city .dd-touch{
+		.keyboard-city .dd-touch{
 			background-color: #ddd;
 		}
 		.select-city-right-nav{
@@ -108,50 +108,15 @@
 		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","enforce":"","id":"scanIdCard"}'></div>
 		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","enforce":""}'></div>
 		<p class="virtualInput select-city">点击选择城市：<span class="city"></span></p>
+		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","enforce":""}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","enforce":"","id":"scanIdCard"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","enforce":""}'></div>
+		<p class="virtualInput select-city">点击选择城市：<span class="city"></span></p>
+		<div class="virtualInput" data-keyboard='{"type":"amount","placeholder":"这是一个价格输入框","enforce":""}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"IDCard","placeholder":"这是一个身份证号输入框","enforce":"","id":"scanIdCard"}'></div>
+		<div class="virtualInput" data-keyboard='{"type":"qwerty","placeholder":"这是一个英文键盘输入框","enforce":""}'></div>
+		<p class="virtualInput select-city">点击选择城市：<span class="city"></span></p>
 	</div>
-		
-	<!-- <section class="section-select-city">
-		<div class="wrap-top">
-			<div class="topbar">
-				<div class="topbar-back">关闭</div>
-			</div>
-		</div>
-		<dl class="dl-select-city">
-			<dt class="dt-select-city" data-href="C">C</dt>
-			<dd class="dd-select-city" data-value="粤U">潮州</dd>
-			<dt class="dt-select-city" data-href="D">D</dt>
-			<dd class="dd-select-city" data-value="粤S">东莞</dd>
-			<dt class="dt-select-city" data-href="F">F</dt>
-			<dd class="dd-select-city" data-value="粤E">佛山</dd>
-			<dt class="dt-select-city" data-href="G">G</dt>
-			<dd class="dd-select-city" data-value="粤A">广州</dd>
-			<dt class="dt-select-city" data-href="H">H</dt>
-			<dd class="dd-select-city" data-value="粤P">河源</dd>
-			<dd class="dd-select-city" data-value="粤L">惠州</dd>
-			<dt class="dt-select-city" data-href="J">J</dt>
-			<dd class="dd-select-city" data-value="粤J">江门</dd>
-			<dd class="dd-select-city" data-value="粤V">揭阳</dd>
-			<dt class="dt-select-city" data-href="M">M</dt>
-			<dd class="dd-select-city" data-value="粤M">梅州</dd>
-			<dt class="dt-select-city" data-href="Q">Q</dt>
-			<dd class="dd-select-city" data-value="粤">清远</dd>
-			<dt class="dt-select-city" data-href="S">S</dt>
-			<dd class="dd-select-city" data-value="粤N">汕头</dd>
-			<dd class="dd-select-city" data-value="粤">汕尾</dd>
-			<dd class="dd-select-city" data-value="粤F">韶关</dd>
-			<dt class="dt-select-city" data-href="Y">Y</dt>
-			<dd class="dd-select-city" data-value="粤Q">阳江</dd>
-			<dd class="dd-select-city" data-value="粤W">云浮</dd>
-			<dt class="dt-select-city" data-href="Z">Z</dt>
-			<dd class="dd-select-city" data-value="粤G">湛江</dd>
-			<dd class="dd-select-city" data-value="粤H">肇庆</dd>
-			<dd class="dd-select-city" data-value="粤">中山</dd>
-			<dd class="dd-select-city" data-value="粤C">珠海</dd>
-		</dl>
-		<div class="right-nav">
-			<a>C</a><a>D</a><a>F</a><a>G</a><a>H</a><a>J</a><a>M</a><a>Q</a><a>S</a><a>Y</a><a>Z</a>
-		</div>
-	</section> -->
 
 	<script type="text/javascript" src="../javascript/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="../javascript/fastclick.js"></script>
@@ -164,9 +129,9 @@
 		creatMobilePageTitle({"title":"虚拟键盘演示","class":"topbar-links","backBotton":"true"});
 
 		var city = [["A"],["B"],["C","潮州.粤U"],["D","东莞.粤S"],["E"],["F","佛山.粤E"],["G","广州.粤A"],["H","河源.粤P","惠州.粤L"],["I"],["J","江门.粤J","揭阳.粤V"],["K"],["L"],["M","梅州.粤M"],["N"],["O"],["P"],["Q","清远.粤"],["R"],["S","汕头.粤N","汕尾.粤","韶关.粤F"],["T"],["U"],["V"],["W"],["X"],["Y","阳江.粤Q","云浮.粤W"],["Z","湛江.粤G","肇庆.粤H","中山.粤","珠海.粤C"]];
-		$('body').append('<section class="wrap-page section-select-city"><div class="wrap-top"></div><dl class="dl-select-city"></dl></div><section>');
-		$(".section-select-city").after('<div class="select-city-right-nav">');
-		$(".section-select-city").after('<div class="wrap-top"><div class="topbar select-city-topbar"><div class="topbar-back">关闭</div></div></div>');
+		$('body').append('<section class="wrap-page keyboard-city"><div class="wrap-top"></div><dl class="dl-select-city"></dl></div><section>');
+		$(".keyboard-city").after('<div class="select-city-right-nav">');
+		$(".keyboard-city").after('<div class="wrap-top"><div class="topbar select-city-topbar"><div class="topbar-back">关闭</div></div></div>');
 
 		for (var i = 0; i <= city.length - 1; i++) {
 			if (city[i].length<=1) {
@@ -180,24 +145,41 @@
 				}
 			}
 		}
+		var bodyScrolltop = 0;
+		var focusVirtualInputCity;
+		var keyboardCity = $(".keyboard-city");
+		function inputCity_open() {
+			focusVirtualInputCity = $(".focusVirtualInput-city");
+			bodyScrolltop = $("body").scrollTop();
+			$(".keyboard-city").fadeIn(100).nextAll(".select-city-right-nav").show(200);
+			$(".keyboard-city").nextAll(".wrap-top").find(".topbar").slideDown(200);
+			if (focusVirtualInputCity.attr("data-scrollTop")) {$("body").scrollTop(focusVirtualInputCity.attr("data-scrollTop"));}
+			else  {$("body").scrollTop(0);}
+		}
+		function inputCity_close() {
+			$(".focusVirtualInput-city").attr("data-scrollTop",$("body").scrollTop());
+			$(".keyboard-city").fadeOut(200).nextAll(".select-city-right-nav").hide(200);
+			$(".keyboard-city").nextAll(".wrap-top").find(".topbar").slideUp(200);
+			$("body").scrollTop(bodyScrolltop);
+			$(".select-city").removeClass("focusVirtualInput-city");
+		}
 		$(".select-city").on("click",function () {
 			closeKeyboard();
-			$(".section-select-city").slideDown(200).nextAll(".select-city-right-nav").show(200);
-			$(".section-select-city").nextAll(".wrap-top").find(".topbar").slideDown(200);
+			$(this).addClass("focusVirtualInput-city");
+			inputCity_open();
 		})
 		$(".select-city-topbar .topbar-back").on("click",function () {
-			$(".section-select-city").slideUp(200).nextAll(".select-city-right-nav").hide(200);
-			$(".section-select-city").nextAll(".wrap-top").find(".topbar").slideUp(200);
+			inputCity_close();
 		})
-		$(".section-select-city dd").on("click",function () {
-			$(".select-city .city").html($(this).attr("data-value"));
-			$(".section-select-city").slideUp(200).nextAll(".select-city-right-nav").hide(200);
-			$(".section-select-city").nextAll(".wrap-top").find(".topbar").slideUp(200);
+		$(".keyboard-city dd").on("click",function () {
+			$(".focusVirtualInput-city .city").html($(this).attr("data-value"));
+			inputCity_close();
 		})
-		$(".right-nav a").on("click",function () {
+		$(".select-city-right-nav a").on("click",function () {
 			var offset = $(".dt-select-city[data-href='"+$(this).html()+"']").offset().top-45;
 			console.log(offset);
-			$("body").scrollTop(offset);
+			$("body").animate({"scrollTop":offset},300);
+			// $("body").scrollTop(offset);
 		})
 		$(".right-nav").on("touchmove","a",function (e) {
 			var touch = e.originalEvent.targetTouches[0];
