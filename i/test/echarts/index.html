@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>ECharts Demo</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=0">
+	<!-- 引入 echarts.js -->
+	<script src="echarts.min.js"></script>
+</head>
+<body>
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+	<div id="main" style="width: 100%;height:200px;"></div>
+	<script type="text/javascript">
+
+	// x轴与y轴的数据
+	var xAxisData = ['01-01','01-02','01-03','01-04','01-05','01-06','01-07','01-08'];
+	var yAxisData = [5, 18, 28, 10, 10, 20, 22,20];
+
+		// 基于准备好的dom，初始化echarts实例
+		var myChart = echarts.init(document.getElementById('main'));
+
+		// 指定图表的配置项和数据
+		var option = {
+			title: {
+				// text: '收益'
+			},
+			tooltip: {},
+			// y轴
+			yAxis: {
+				axisLine: {
+					lineStyle: {
+						color: '#e8e8e8',
+					}
+				},
+				axisTick: {
+					show: false,
+				},
+				axisLabel:{
+					textStyle:{
+						color: '#999',
+						fontSize: 10,
+					}
+				},
+				splitLine:{  
+					//显示y轴的竖线
+					lineStyle: {
+						color: '#e8e8e8',
+					}
+				},
+			},
+			series: {
+				name: '收益',
+				type: 'line',
+				data: yAxisData,
+				showSymbol: false,
+				// data: [0, 0, 0, 0, 0, 0, 0]
+				markArea: {
+					data: [ 
+						[
+							{
+								coord: [1],
+							}, 
+							{
+								coord: [2],
+							}
+						], 
+						[
+							{
+								coord: [3],
+							}, 
+							{
+								coord: [4],
+							}
+						] ,
+						[
+							{
+								coord: [5],
+							}, 
+							{
+								coord: [6],
+							}
+						] ,
+						[
+							{
+								coord: [7],
+							}, 
+							{
+								coord: [8],
+							}
+						]
+					],
+					itemStyle:{
+						normal: {
+							color: '#8bd6fc',
+							borderColor: '#e8e8e8',
+							opacity: 0.2,
+						}
+					},
+					silent: true,
+				}
+			},
+			// x轴
+			xAxis: {
+				data: xAxisData,
+				axisLine: {
+					lineStyle: {
+						color: '#e8e8e8',
+					}
+				},
+				axisTick: {
+					alignWithLabel: true,
+					show: false,
+				},
+				axisLabel:{
+					textStyle:{
+						color: '#999',
+						fontSize: 10,
+					}
+				},
+				type: 'category',
+				splitLine:{  
+					//显示x轴的竖线
+					show: true,
+					interval: 0,
+					lineStyle: {
+						color: '#e8e8e8',
+					}
+				},
+				// 不偏移，即数值显示在刻度正上方
+				boundaryGap : false,
+			},
+			// 图表样式
+			grid: {
+				left: '5%',
+				right: '5%',
+				top: 30,
+				bottom: '5%',
+				containLabel: true,
+				show: true,
+				borderColor: '#e8e8e8',
+			},
+			showSymbol: false,
+			symbolSize: 0,
+			symbol: 'rect',
+			// 折线样式
+			lineStyle: {
+				normal: {
+					type: 'solid',
+					color: '#ff890b',
+					width: '14px',
+				}
+			},
+			tooltip : {
+				// 鼠标或手指移动时
+				trigger: 'axis',
+				axisPointer: {
+					lineStyle: {
+						color: '#666',
+						width: 1,
+						opacity: 0.5,
+					},
+				},
+			},
+		}
+
+		// 使用刚指定的配置项和数据显示图表。
+		myChart.setOption(option);
+		window.onresize = myChart.resize;
+		// myChart.setOption(option);
+	</script>
+</body>
+</html>
